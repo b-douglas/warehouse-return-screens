@@ -65,12 +65,12 @@ i {
   <input type="text" id="doprocess" name="doprocess" size="40" value="scan bar code for Process or Skip"><br>
 
 <br>
-	<form action="4_w-returnconfirmation-returned.html">
-		<input type="submit" value="Returned">
+	<form action="4_w-returnconfirmation-process.html">
+		<input type="submit" value="Process">
 	</form>
 	<br>	
-	<form action="4_w-returnconfirmation-received.html">
-		<input type="submit" value="Received">
+	<form action="4_w-returnconfirmation-skip.html">
+		<input type="submit" value="Skip">
 	</form>
 	<br>
 
@@ -80,8 +80,8 @@ i {
 	<li>The items table above is generated from parsing the json respons from the <i>api/OmsOrderHistory</i></li>
 	<li>The returns specialist will use the gun to scan either returned or received bar code, and that will submit the form.</li>
 	<li>If item is unchecked than it will stay in Returned Pending</li>
-	<li>Scanning <b>received</b> will mark all checked items <b>received</b> via <i>api/OMSInboundItemStatusUpdate</i></li>
-	<li>Scanning <b>returned</b> will mark all checked items <b>returned</b> via <i>api/OmsRmaInboundReturn</i></li>
+	<li>Scanning <b>skip</b> will do nothing except forward to a screen reminding the Returns specalist to update the items in OMS UI</li>
+	<li>Scanning <b>processed</b> will send all checked items as <b>returned</b> via <i>api/OmsRmaInboundReturn</i><br>and all uncheked items wil be skipped and returns specialist will be asked to go into OMS UI to update them.</li>
 </ol>
 </p>
 
