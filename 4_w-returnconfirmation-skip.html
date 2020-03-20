@@ -22,17 +22,23 @@ td {
 <h2>Return Confirmation</h2>
 
 
-<p>The following items were marked recieved, consumer services will look at these items.</p>
+<p>The following items were skipped, please login to OMS and update these items.</p>
 
 <form action="2_w-orderinput.html">
 
-  <table >
-    <th>Order Item Id</th>
-    <th>Descriotion</th>
-    <th>Status</th>
-    <th>RMA Id</th>
-    <tr><td>123</td><td>Bears Jacket Red</td><td>Received</td><td>123</td></tr>
-    <tr><td>456</td><td>Bears Jacket Green</td><td>Received</td><td>123</td></tr>
+  <table>
+    <th>Order Item Id</th> <!-- ID in OMS -->
+    <th>SKU</th> <!-- SKU in OMS and mapped to  SAP_MaterialNumber-->
+    <th>Product Name</th>  <!-- Custom 2 in OMS --> 
+    <!-- Do we want the scene 7 URL -->
+    <th>Color</th> <!-- StyleNumber in OMS -->
+    <th>Size</th> <!-- ProductSize in OMS -->
+    <th>Quantiy</th> <!-- Quantity in OMS -->
+    <th>Status</th> <!-- ItemStatusName in OMS -->
+    <th>RmaNumber</th>  <!-- Rmaorder.OrderNumber ???? in OMS-->
+    <!--Do we need isRMACanceled ??? -->
+    <tr><td>9871</td><td>123</td><td>BleroForm LS Shirt</td><td>Green</td><td>XL</td><td>1</td><td>Pending Return</td><td>987</td></tr> 
+  <tr><td>9874</td><td>456</td><td>Men's Blarch Block Pants</td><td>Black</td><td>36</td><td>1</td><td>Pending Return</td><td>987</td></tr>
   </table>
   <br>
 
