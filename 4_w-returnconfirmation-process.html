@@ -9,8 +9,8 @@ table, th, td {
   border-collapse: collapse;
   padding: 15px;
 }
-td {
-  color:green;
+span {
+  color: blue;
 }
 </style>
 <body>
@@ -20,20 +20,48 @@ td {
 
 
 
-<h2>Return Confirmation</h2>
+<h2>Return Confirmation Processed</h2>
 
 
-<p>The following items were returned!</p>
+<h3>The following items were returned:</h3>
 
 <form action="2_w-orderinput.html">
 
-  <table >
-    <th>Order Item Id</th>
-    <th>Descriotion</th>
-    <th>Status</th>
-    <th>RMA Id</th>
-    <tr><td>123</td><td>Bears Jacket Red</td><td>Returned</td><td>123</td></tr>
-  <tr><td>456</td><td>Bears Jacket Green</td><td>Returned</td><td>123</td></tr>
+  <table style="color:green">
+    <th>Order Item Id</th> <!-- ID in OMS -->
+    <th>SKU</th> <!-- SKU in OMS and mapped to  SAP_MaterialNumber-->
+    <th>Product Name</th>  <!-- Custom 2 in OMS --> 
+    <!-- Do we want the scene 7 URL -->
+    <th>Color</th> <!-- StyleNumber in OMS -->
+    <th>Size</th> <!-- ProductSize in OMS -->
+    <th>Quantiy</th> <!-- Quantity in OMS -->
+    <th>Status</th> <!-- ItemStatusName in OMS -->
+    <th>RmaNumber</th>  <!-- Rmaorder.OrderNumber ???? in OMS-->
+    <!--Do we need isRMACanceled ??? -->
+  <tr><td>9874</td><td>456</td><td>Men's Blarch Block Pants</td><td>Black</td><td>36</td><td>1</td><td>Returned</td><td>987</td></tr>
+  </table>
+
+<h3>The following items need to be updated in OMS:</h3>
+<p>
+  <span>
+    <b>
+      Please login to OMS UI, and update the following items with missing, broken, or incorrect.  <i>Make sure to add a note to notify Consumer Services</i>
+    </b>
+  </span>
+</p>
+
+  <table style="color:red">
+    <th>Order Item Id</th> <!-- ID in OMS -->
+    <th>SKU</th> <!-- SKU in OMS and mapped to  SAP_MaterialNumber-->
+    <th>Product Name</th>  <!-- Custom 2 in OMS --> 
+    <!-- Do we want the scene 7 URL -->
+    <th>Color</th> <!-- StyleNumber in OMS -->
+    <th>Size</th> <!-- ProductSize in OMS -->
+    <th>Quantiy</th> <!-- Quantity in OMS -->
+    <th>Status</th> <!-- ItemStatusName in OMS -->
+    <th>RmaNumber</th>  <!-- Rmaorder.OrderNumber ???? in OMS-->
+    <!--Do we need isRMACanceled ??? -->
+  <tr><td>9874</td><td>456</td><td>Men's Blarch Block Pants</td><td>Black</td><td>36</td><td>1</td><td>Pending Return</td><td>987</td></tr>
   </table>
   <br>
 
@@ -46,6 +74,7 @@ td {
 <p>
 <ol>
 	<li>This would show for like ~10 seconds and then auto move to the input screen again.</li>
+  <li>The red text items to be updated only would show if there were items that were unchecked in the flow.</li>
 </ol>
 </p>
 
