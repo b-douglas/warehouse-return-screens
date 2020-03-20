@@ -2,4 +2,4 @@
 A quick sample of warehouse return screens
 
 
-To start please click this link:  <a href="1_w-login.md">Login Page</a>
+To start please click this link:  <a href="1_w-login.html">Goto Login Page</a>
