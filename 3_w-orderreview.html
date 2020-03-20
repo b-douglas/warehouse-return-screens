@@ -12,6 +12,9 @@ table, th, td {
 span {
 	color: blue;
 }
+i {
+	color: purple;
+}
 </style>
 <body>
 
@@ -27,18 +30,28 @@ span {
 
 
 <p>
+<table>
+	<tr><td><b>OrderNumber</b></td><td>123</td></tr>
+	<tr><td><b>OrderDate</b></td><td>03/18/2020</td></tr>
+	<tr><td><b>OrderStatusCode</b></td><td>Completed or Manual Review</td></tr>
+	<tr><td><b>CustomerId</b></td><td>987</td></tr>
+</table>
+</p>
+<p>
   <table >
   	<th>Select</th>
   	<th>Order Item Id</th>
-  	<th>Descriotion</th>
+  	<th>Description</th>
   	<th>Status</th>
-  	<th>RMA Id</th>
-  	<tr><td><input type="checkbox" id='orderid' value="123" checked="true"/></td><td>123</td><td>Bears Jacket Red</td><td>Return Pending</td><td>123</td></tr>
-	<tr><td></td><td>234</td><td>Bears Gloves Red</td><td>Canceled</td><td></td></tr>
-	<tr><td></td><td>345</td><td>Bears Pants Red</td><td>Returned</td><td>345</td></tr>  	
-	<tr><td><input type="checkbox" id='orderid' value="456" checked="true"/></td><td>456</td><td>Bears Jacket Green</td><td>Return Pending</td><td>123</td></tr>
+  	<th>RmaNumber</th>
+  	<tr><td><input type="checkbox" id='orderid' value="123" checked="true"/></td><td>123</td><td>BleroForm LS Shirt</td><td>Green</td><td>XL</td><td>1</td><td>Return Pending</td><td>123</td></tr>
+	<tr><td></td><td>234</td><td>Men's Jacket</td><td>Red</td><td>XL</td><td>1</td><td>Canceled</td><td></td></tr>
+	<tr><td></td><td>345</td><td>Men's 5th and F Pants</td><td>Black</td><td>36</td><td>1</td><td>Returned</td><td>345</td></tr>  	
+	<tr><td><input type="checkbox" id='orderid' value="456" checked="true"/></td><td>456</td><td>Men's Blarch Block Pants</td><td>Black</td><td>36</td><td>1</td><td>Return Pending</td><td>123</td></tr>
   </table>
 </p>
+
+
 
   <p>
   <span><b>If items items are good then items returned will be processed and customer will get credited.</b><br>
