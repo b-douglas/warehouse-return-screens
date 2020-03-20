@@ -31,33 +31,38 @@ i {
 
 <p>
 <table>
-	<tr><td><b>OrderNumber</b></td><td>123</td></tr>
-	<tr><td><b>OrderDate</b></td><td>03/18/2020</td></tr>
-	<tr><td><b>OrderStatusCode</b></td><td>Completed or Manual Review</td></tr>
-	<tr><td><b>CustomerId</b></td><td>987</td></tr>
+	<tr><td><b>Order Number</b></td><td>123</td></tr> <!-- OrderNumber in OMS-->
+	<tr><td><b>Order Date</b></td><td>03/18/2020</td></tr> <!-- OrderDate in OMS-->
+	<tr><td><b>Order Status Code</b></td><td>Completed or Manual Review</td></tr> <!-- OrderStatusCode in OMS-->
+	<tr><td><b>Customer Id</b></td><td>987</td></tr> <!-- CustomerId in OMS-->
 </table>
 </p>
 <p>
-  <table >
+  <table>
   	<th>Select</th>
-  	<th>Order Item Id</th>
-  	<th>Description</th>
-  	<th>Status</th>
-  	<th>RmaNumber</th>
-  	<tr><td><input type="checkbox" id='orderid' value="123" checked="true"/></td><td>123</td><td>BleroForm LS Shirt</td><td>Green</td><td>XL</td><td>1</td><td>Return Pending</td><td>123</td></tr>
-	<tr><td></td><td>234</td><td>Men's Jacket</td><td>Red</td><td>XL</td><td>1</td><td>Canceled</td><td></td></tr>
-	<tr><td></td><td>345</td><td>Men's 5th and F Pants</td><td>Black</td><td>36</td><td>1</td><td>Returned</td><td>345</td></tr>  	
-	<tr><td><input type="checkbox" id='orderid' value="456" checked="true"/></td><td>456</td><td>Men's Blarch Block Pants</td><td>Black</td><td>36</td><td>1</td><td>Return Pending</td><td>123</td></tr>
+  	<th>Order Item Id</th> <!-- ID in OMS -->
+  	<th>SKU</th> <!-- SKU in OMS and mapped to 	SAP_MaterialNumber-->
+  	<th>Product Name</th>  <!-- Custom 2 in OMS --> 
+  	<!-- Do we want the scene 7 URL -->
+  	<th>Color</th> <!-- StyleNumber in OMS -->
+  	<th>Size</th> <!-- ProductSize in OMS -->
+  	<th>Quantiy</th> <!-- Quantity in OMS -->
+  	<th>Status</th> <!-- ItemStatusName in OMS -->
+  	<th>RmaNumber</th>  <!-- Rmaorder.OrderNumber ???? in OMS-->
+  	<!--Do we need isRMACanceled ??? -->
+  	<tr><td><input type="checkbox" id='orderid' value="123" checked="true"/></td><td>9871</td><td>123</td><td>BleroForm LS Shirt</td><td>Green</td><td>XL</td><td>1</td><td>Pending Return</td><td>987</td></tr>
+	<tr><td></td><td>9872</td><td>234</td><td>Men's Jacket</td><td>Red</td><td>XL</td><td>1</td><td>Cancelled</td><td></td></tr>
+	<tr><td></td><td>9873</td><td>345</td><td>Men's 5th and F Pants</td><td>Black</td><td>36</td><td>1</td><td>Returned</td><td>345</td></tr>  	
+	<tr><td><input type="checkbox" id='orderid' value="456" checked="true"/></td><td>9874</td><td>456</td><td>Men's Blarch Block Pants</td><td>Black</td><td>36</td><td>1</td><td>Pending Return</td><td>987</td></tr>
   </table>
 </p>
 
 
 
   <p>
-  <span><b>If items items are good then items returned will be processed and customer will get credited.</b><br>
-  <b>If items items are bad then items will be marked Received.</b></span></p>
+  <span><b>Please check the box for the items selected above.  If items are missing, broken, or incorrect please uncheck those items.<br>If all items are missing, broken or incorrect, please scan the skip barcode and the page will advance doing no processing.</b></span></p>
 
-  <input type="text" id="isreturned" name="isreturned" size="40" value="scan bar code for Returned or Received"><br>
+  <input type="text" id="doprocess" name="doprocess" size="40" value="scan bar code for Process or Skip"><br>
 
 <br>
 	<form action="4_w-returnconfirmation-returned.html">
