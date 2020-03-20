@@ -16,7 +16,7 @@ body {
 
 
 
-<form action="3_w-orderreview.html">
+<form action="3_w-orderreview.md">
   <b><label for="orderid">OrderId:</label><br></b>
   <input type="text" id="orderid" name="orderid" value="scan bar code from box"><br>
   <b><label for="RMAId">RMAId:</label><br></b>

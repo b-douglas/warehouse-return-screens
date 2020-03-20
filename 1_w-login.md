@@ -17,7 +17,7 @@ body {
 
 
 
-<form action="2_w-orderinput.html">
+<form action="2_w-orderinput.md">
   <b><label for="userid">Username:</label><br></b>
   <input type="text" id="userid" name="userid" value="put your username here"><br>
   <b><label for="password">Password:</label><br></b>

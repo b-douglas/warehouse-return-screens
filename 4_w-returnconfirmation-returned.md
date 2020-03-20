@@ -25,7 +25,7 @@ td {
 
 <p>The following items were returned!</p>
 
-<form action="2_w-orderinput.html">
+<form action="2_w-orderinput.md">
 
   <table >
     <th>Order Item Id</th>

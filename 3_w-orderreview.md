@@ -47,11 +47,11 @@ span {
   <input type="text" id="isreturned" name="isreturned" size="40" value="scan bar code for Returned or Received"><br>
 
 <br>
-	<form action="4_w-returnconfirmation-returned.html">
+	<form action="4_w-returnconfirmation-returned.md">
 		<input type="submit" value="Returned">
 	</form>
 	<br>	
-	<form action="4_w-returnconfirmation-received.html">
+	<form action="4_w-returnconfirmation-received.md">
 		<input type="submit" value="Received">
 	</form>
 	<br>
