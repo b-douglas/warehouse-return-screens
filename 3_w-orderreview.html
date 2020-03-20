@@ -78,10 +78,10 @@ i {
 <p>
 <ol>
 	<li>The items table above is generated from parsing the json respons from the <i>api/OmsOrderHistory</i></li>
-	<li>The returns specialist will use the gun to scan either returned or received bar code, and that will submit the form.</li>
-	<li>If item is unchecked than it will stay in Returned Pending</li>
+	<li>The returns specialist will use the gun to scan either <b>process</b> or <b>skip</b> bar code, and that will submit the form.</li>
+	<li>If item is unchecked than it will stay in Pending Return</li>
 	<li>Scanning <b>skip</b> will do nothing except forward to a screen reminding the Returns specalist to update the items in OMS UI</li>
-	<li>Scanning <b>processed</b> will send all checked items as <b>returned</b> via <i>api/OmsRmaInboundReturn</i><br>and all uncheked items wil be skipped and returns specialist will be asked to go into OMS UI to update them.</li>
+	<li>Scanning <b>process</b> will send all checked items as <b>returned</b> via <i>api/OmsRmaInboundReturn</i><br>and all uncheked items wil be skipped and returns specialist will be asked to go into OMS UI to update them.</li>
 </ol>
 </p>
 
