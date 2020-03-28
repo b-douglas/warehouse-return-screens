@@ -70,11 +70,11 @@ i {
   <input type="text" id="doprocess" name="doprocess" size="40" value="scan bar code for Process or Skip" /> <br />
 
  <br />
-	<form action="../returnconfirmation?action=process" method="POST">
+	<form action="../returnconfirmation?action=process/" method="POST">
 		<input type="submit" value="Process - Hidden" />
 	</form>
 	 <br />	
-	<form action="../returnconfirmation?action=skip" method="POST">
+	<form action="../returnconfirmation?action=skip/" method="POST">
 		<input type="submit" value="Skip - Hidden" />
 	</form>
 	 <br />
@@ -95,7 +95,7 @@ i {
 */}  
 
 
-    <Link to="index">Go back to the homepage</Link>
+    <Link to="">Go back to the homepage</Link>
   </Layout>
 )
 

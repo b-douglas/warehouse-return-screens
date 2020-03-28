@@ -17,7 +17,7 @@ const ReturnInput = () => (
     <h1>Returns Input Screen</h1>
 
 
-    <form action="../returnreview">
+    <form action="../returnreview/" method="POST">
       <b><label for="orderid">OrderId:</label><br /></b>
       <input type="text" id="orderid" name="orderid" value="scan bar code from box" /><br />
       <b><label for="RMAId">RMAId:</label><br /></b>
@@ -43,7 +43,7 @@ const ReturnInput = () => (
 */}  
 
 
-    <Link to="index">Go back to the homepage</Link>
+    <Link to="">Go back to the homepage</Link>
   </Layout>
 )
 

@@ -8,10 +8,9 @@ import SEO from "../components/seo"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Blank Brands Warehouse Return Screens</h1>
-    <p>A quick sample of warehouse return screens</p>
+    <h2>A quick sample of warehouse return screens</h2>
 
-    To start please click this link:  <Link to="login">Login Page</Link>
+    To start please click this link:  <Link to="/login">Login Page</Link>
 
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
