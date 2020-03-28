@@ -22,7 +22,7 @@ const ReturnConfirmation = () => (
 
 <h3>The following items were returned:</h3>
 
-<form action="/returninput">
+<form action="../returninput">
 <div className={styles.processed}>
   <table>
     <th>Order Item Id</th>  {/* ID in OMS  */}
@@ -83,7 +83,7 @@ const ReturnConfirmation = () => (
 
 <p>The following items were skipped, please login to OMS and update these items.</p>
 
-<form action="/returninput">
+<form action="../returninput">
 <div className={styles.skipped}>
   <table>
     <th>Order Item Id</th>  {/* ID in OMS  */}
@@ -121,7 +121,7 @@ const ReturnConfirmation = () => (
 */}  
 
 
-    <Link to="/">Go back to the homepage</Link>
+    <Link to="index">Go back to the homepage</Link>
   </Layout>
 )
 

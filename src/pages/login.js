@@ -22,7 +22,7 @@ const LoginPage = () => (
 
 
 
-    <form action="/returninput">
+    <form action="returninput">
     <b><label for="userid">Username:</label><br /></b>
     <input type="text" id="userid" name="userid" value="put your username here" /><br />
     <b><label for="password">Password:</label><br /></b>
@@ -38,7 +38,7 @@ const LoginPage = () => (
 */}  
 
 
-    <Link to="/">Go back to the homepage</Link>
+    <Link to="index">Go back to the homepage</Link>
   </Layout>
 )
 
