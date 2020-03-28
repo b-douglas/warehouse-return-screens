@@ -1,3 +1,5 @@
+@import '../styles/global.css';
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -197,17 +199,6 @@ html {
 }
 *:after {
   box-sizing: inherit;
-}
-body {
-  color: hsla(0, 0%, 0%, 0.8);
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  word-wrap: break-word;
-  font-kerning: normal;
-  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
-  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
-  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
-  font-feature-settings: "kern", "liga", "clig", "calt";
 }
 img {
   max-width: 100%;
