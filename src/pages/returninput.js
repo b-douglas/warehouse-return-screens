@@ -14,6 +14,7 @@ export default class ReturnInput extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleInputChange(event) {
@@ -33,6 +34,10 @@ export default class ReturnInput extends React.Component {
     navigate("/returnreview") // Need to pass the state of the API call to the next page
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+  }
+
   render() {
     return (
       <Layout>
@@ -44,7 +49,7 @@ export default class ReturnInput extends React.Component {
 
         <h1>Returns Input Screen</h1>
 
-        <form onSubmit={this.handleBlur} method="POST">
+        <form onSubmit={this.handleSubmit} method="POST">
           <label htmlFor="ordernumber">
             <b>{"Order Number: "}</b>
             <input

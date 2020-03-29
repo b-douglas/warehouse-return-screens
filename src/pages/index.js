@@ -2,15 +2,12 @@ import React from "react"
 import { Link, navigate } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+//import Image from "../components/image"
 import SEO from "../components/seo"
 
 export default class IndexPage extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+
   componentDidMount() {
-    //super.componentDidMount()
     navigate("/login") //Ha ha ha useless page, but whatever, we go to login right away this way
   }
 

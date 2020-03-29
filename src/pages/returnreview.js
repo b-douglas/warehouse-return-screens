@@ -19,6 +19,7 @@ export default class ReturnReview extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleInputChange(event) {
@@ -64,6 +65,10 @@ export default class ReturnReview extends React.Component {
     // state { token , action, selected items, unseleced items}
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+  }
+
   render() {
     return (
       <Layout>
@@ -102,7 +107,7 @@ export default class ReturnReview extends React.Component {
           </tbody>
         </table>
 
-        <form onSubmit={this.handleBlur} method="POST">
+        <form onSubmit={this.handleSubmit} method="POST">
           <table>
             <thead>
               <tr>
