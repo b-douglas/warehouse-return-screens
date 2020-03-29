@@ -29,8 +29,10 @@ export default class LoginPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    alert(`Call API with - ${this.state.userid} ${this.state.password}!`)
-    navigate("/returninput")
+    alert(
+      `Call api/token with { ${this.state.userid} , ${this.state.password} }`
+    )
+    navigate("/returninput") //need to pass the state of the variable to the next page
   }
 
   render() {
@@ -48,7 +50,7 @@ export default class LoginPage extends React.Component {
 
         <div className={styles.login}>
           <form onSubmit={this.handleSubmit} method="POST">
-            <div class="formField formFieldInputFocus">
+            <div className="formField formFieldInputFocus">
               <b>
                 <label htmlFor="userid">Username </label>
               </b>
@@ -61,7 +63,7 @@ export default class LoginPage extends React.Component {
               />
               <br />
             </div>
-            <div class="formField">
+            <div className="formField">
               <b>
                 <label htmlFor="password">Password </label>
               </b>
@@ -73,14 +75,15 @@ export default class LoginPage extends React.Component {
                 onChange={this.handleInputChange}
               />
             </div>
-            <div class="formField">
+            <div className="formField">
               <label>
-              <input
-                className={styles.submit}
-                id="SubmitLogin"
-                type="submit"
-                value="Log In"
-              /></label>
+                <input
+                  className={styles.submit}
+                  id="SubmitLogin"
+                  type="submit"
+                  value="Log In"
+                />
+              </label>
             </div>
             <div id="LogInLinks">
               <a href="https://staging-admin-804279-newell-app.deckcommerce.net/Account/ForgotUsername">

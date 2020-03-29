@@ -8,8 +8,8 @@ export default class ReturnInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      ordernumber: "scan barcode from box",
-      rmanumber: "scan barcode from box",
+      ordernumber: "",
+      rmanumber: "",
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -27,9 +27,10 @@ export default class ReturnInput extends React.Component {
   }
 
   handleBlur(event) {
-    //event.preventDefault()
-    alert(`Call API with - ${this.state.ordernumber} ${this.state.rmanumber}!`)
-    navigate("/returnreview")
+    alert(
+      `Call api/OmsOrderHistory ( ${this.state.ordernumber} , ${this.state.rmanumber} )`
+    )
+    navigate("/returnreview") // Need to pass the state of the API call to the next page
   }
 
   render() {
@@ -52,12 +53,13 @@ export default class ReturnInput extends React.Component {
               name="ordernumber"
               value={this.state.ordernumber}
               onChange={this.handleInputChange}
+              placeholder="scan barcode from box"
             />
           </label>
           <br />
 
           <label htmlFor="rmanumber">
-          <b>{"RMA Number: "}</b>
+            <b>{"RMA Number: "}</b>
             <input
               type="text"
               id="rmanumber"
@@ -65,6 +67,7 @@ export default class ReturnInput extends React.Component {
               value={this.state.rmanumber}
               onChange={this.handleInputChange}
               onBlur={this.handleBlur}
+              placeholder="scan barcode from box"
             />
           </label>
           <br />
@@ -91,7 +94,7 @@ export default class ReturnInput extends React.Component {
         End of Custom HTML
         */}
 
-        <Link to="">Go back to the homepage</Link>
+        <Link to="/">Go back to the homepage</Link>
       </Layout>
     )
   }
