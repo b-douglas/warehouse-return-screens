@@ -1,5 +1,4 @@
 import React from "react"
-//import ReactDOM from 'react-dom'
 import { Link, navigate } from "gatsby"
 
 import Layout from "../components/layout"
@@ -9,7 +8,7 @@ export default class ReturnReview extends React.Component {
   constructor(props) {
     super(props)
 
-    let itemsMap = new Map()
+    const itemsMap = new Map()
     itemsMap.set("123", true)
     itemsMap.set("456", true)
 
@@ -56,8 +55,8 @@ export default class ReturnReview extends React.Component {
     }
 
     let mystring = ""
-    for (var key of itemsMap.keys()) {
-      mystring += `[${key} , ${itemsMap.get(key)}] `
+    for (var skey of itemsMap.keys()) {
+      mystring += `[${skey} , ${itemsMap.get(skey)}] `
     }
     alert(`Call api/OmsRmaInboundReturn (${mystring} )`) //Need to only make call on items that are true
 
@@ -70,7 +69,6 @@ export default class ReturnReview extends React.Component {
       <Layout>
         <SEO title="ReturnReview" />
         <h1>Order Review Screen</h1>
-
         <table>
           <tbody>
             <tr>
