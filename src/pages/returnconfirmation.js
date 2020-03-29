@@ -20,7 +20,7 @@ export default class ReturnConfirmation extends React.Component {
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => navigate("/returninput"), 5000)
+    this.timer = setInterval(() => navigate("/returninput"), 30000)
   }
 
   componentWillUnmount() {
