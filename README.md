@@ -1,12 +1,12 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+
+# warehouse-return-screens
+A quick sample of warehouse return screens
+
+
+To start please click this link:  <a href="https://b-douglas.github.io/warehouse-return-screens/login">Goto Login Page</a>
+
+
+<hr />
 
 Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
