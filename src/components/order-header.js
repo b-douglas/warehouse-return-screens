@@ -24,13 +24,11 @@ const Row = ({ oh }) => {
 }
 
 const OrderHeader = ({ orderheaders }) => (
-  <div>
     <Table bordered hover responsive="md">
       <tbody>
         <Row oh={orderheaders} />
       </tbody>
     </Table>
-  </div>
 )
 
 export default OrderHeader
