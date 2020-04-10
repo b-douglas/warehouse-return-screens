@@ -3,6 +3,7 @@ import { Link, navigate } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import OrderHeader from "../components/order-header"
 
 export default class ReturnReview extends React.Component {
   constructor(props) {
@@ -20,6 +21,17 @@ export default class ReturnReview extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.myMap = [
+      { key: "OrderNumber", name: "Order Number", value: "9283745298" },
+      { key: "OrderDate", name: "Order Date", value: "03/18/2020" },
+      {
+        key: "OrderStatusCode",
+        name: "Order Status Code",
+        value: "Completed or Manual Review",
+      },
+      { key: "CustomerId", name: "Customer Id", value: "5986743" },
+    ]
   }
 
   handleInputChange(event) {
@@ -43,10 +55,14 @@ export default class ReturnReview extends React.Component {
 
   handleBlur(event) {
     const itemsMap = this.state.items
+    let mystring = ""
 
     if (this.state.action === "process") {
       //do nothing
+      // Maybe call the api Here?
+      mystring += `Call api/OmsRmaInboundReturn `
     } else if (this.state.action === "skip") {
+      mystring += `Skipping `
       for (var key of itemsMap.keys()) {
         itemsMap.set(key, false)
       }
@@ -55,11 +71,12 @@ export default class ReturnReview extends React.Component {
       return
     }
 
-    let mystring = ""
     for (var skey of itemsMap.keys()) {
       mystring += `[${skey} , ${itemsMap.get(skey)}] `
     }
-    alert(`Call api/OmsRmaInboundReturn (${mystring} )`) //Need to only make call on items that are true
+    alert(mystring) //Need to only make call on items that are true
+    //Maybe make the call on the return confirmation page??
+    //Not sure how I want to handle errors yet.
 
     navigate("/returnconfirmation") // Need to pass the state of the API call to the next page
     // state { token , action, selected items, unseleced items}
@@ -74,38 +91,8 @@ export default class ReturnReview extends React.Component {
       <Layout>
         <SEO title="ReturnReview" />
         <h1>Order Review Screen</h1>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <b>Order Number</b>
-              </td>
-              <td>9283745298</td>
-            </tr>
-            {/* OrderNumber in OMS */}
-            <tr>
-              <td>
-                <b>Order Date</b>
-              </td>
-              <td>03/18/2020</td>
-            </tr>
-            {/* OrderDate in OMS */}
-            <tr>
-              <td>
-                <b>Order Status Code</b>
-              </td>
-              <td>Completed or Manual Review</td>
-            </tr>
-            {/* OrderStatusCode in OMS */}
-            <tr>
-              <td>
-                <b>Customer Id</b>
-              </td>
-              <td>5986743</td>
-            </tr>
-            {/* CustomerId in OMS */}
-          </tbody>
-        </table>
+
+        <OrderHeader orderheaders={this.myMap} />
 
         <form onSubmit={this.handleSubmit} method="POST">
           <table>
@@ -124,14 +111,14 @@ export default class ReturnReview extends React.Component {
                 </th>
                 <th>
                   Product Name
-                  <div style={{ display: "none" }}> Custom 2 in OMS </div>
+                  <div style={{ display: "none" }}> StyleNumber in OMS </div>
                   <div style={{ display: "none" }}>
                     Do we want the scene 7 URL
                   </div>
                 </th>
                 <th>
                   Color
-                  <div style={{ display: "none" }}> StyleNumber in OMS </div>
+                  <div style={{ display: "none" }}> Attribute in OMS </div>
                 </th>
                 <th>
                   Size
@@ -152,6 +139,10 @@ export default class ReturnReview extends React.Component {
                   </div>
                   <div style={{ display: "none" }}>
                     Do we need isRMACanceled ???
+                  </div>
+                  <div style={{ display: "none" }}>
+                    Note: we should probably look at update based on the order
+                    mapping Probably need Image, Style #, if Stork Craft
                   </div>
                 </th>
               </tr>
