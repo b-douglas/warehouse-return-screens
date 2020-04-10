@@ -4,6 +4,7 @@ import { Link, navigate } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import OrderHeader from "../components/order-header"
+import OrderDetail from "../components/order-detail"
 
 export default class ReturnReview extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class ReturnReview extends React.Component {
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
 
-    this.myMap = [
+    this.orderheaders = [
       { key: "OrderNumber", name: "Order Number", value: "9283745298" },
       { key: "OrderDate", name: "Order Date", value: "03/18/2020" },
       {
@@ -32,6 +33,9 @@ export default class ReturnReview extends React.Component {
       },
       { key: "CustomerId", name: "Customer Id", value: "5986743" },
     ]
+
+    this.colHeaders = []
+    this.rowDetail = []
   }
 
   handleInputChange(event) {
@@ -92,9 +96,12 @@ export default class ReturnReview extends React.Component {
         <SEO title="ReturnReview" />
         <h1>Order Review Screen</h1>
 
-        <OrderHeader orderheaders={this.myMap} />
+        <OrderHeader orderheaders={this.orderheaders} />
 
         <form onSubmit={this.handleSubmit} method="POST">
+
+        <OrderDetail columnHeaders={this.colHeaders} rowDetail={this.rowDetail} />
+
           <table>
             <thead>
               <tr>
