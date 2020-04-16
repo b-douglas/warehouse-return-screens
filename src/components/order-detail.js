@@ -6,15 +6,15 @@ export default class OrderDetail extends React.Component {
   constructor(props) {
     super(props)
 
-    const itemsMap = new Map()
-    itemsMap.set("123", true)
-    itemsMap.set("456", true)
+    const selectedProps = {
+      84389: true,
+    }
 
     this.state = {
       action: "",
       orderitems: props.orderitems,
       renderForm: props.renderForm,
-      selectMap: itemsMap,
+      selectProps: selectedProps,
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -27,21 +27,22 @@ export default class OrderDetail extends React.Component {
     const name = target.name
 
     if (name === "itemId") {
-      const itemsMap = this.state.items
+      const selectedProps = this.state.selectProps
       if (target.checked) {
-        itemsMap.set(value, true)
+        selectedProps[value] = true
       } else {
-        itemsMap.set(value, false)
+        selectedProps[value] = false
       }
     } else {
       this.setState({
         [name]: value,
       })
     }
+    console.debug(this.state.selectProps)
   }
 
   handleBlur(event) {
-    const itemsMap = this.state.items
+    const selectedProps = this.state.selectProps
     let mystring = ""
 
     if (this.state.action === "process") {
@@ -50,16 +51,20 @@ export default class OrderDetail extends React.Component {
       mystring += `Call api/OmsRmaInboundReturn `
     } else if (this.state.action === "skip") {
       mystring += `Skipping `
-      for (var key of itemsMap.keys()) {
-        itemsMap.set(key, false)
+      for (const key in selectedProps) {
+        if (selectedProps.hasOwnProperty(key)) {
+          selectedProps[key] = false
+        }
       }
     } else {
       alert(`need to enter in skip or process`)
       return
     }
 
-    for (var skey of itemsMap.keys()) {
-      mystring += `[${skey} , ${itemsMap.get(skey)}] `
+    for (const skey in selectedProps) {
+      if (selectedProps.hasOwnProperty(skey)) {
+        mystring += `[${skey} , ${selectedProps[skey]}] `
+      }
     }
     alert(mystring) //Need to only make call on items that are true
     //Maybe make the call on the return confirmation page??
@@ -88,19 +93,37 @@ export default class OrderDetail extends React.Component {
           </thead>
           <tbody>
             {this.state.orderitems.getItems().map(row => {
-              console.debug(row)
+              let checkbox
+              if (this.state.selectProps.hasOwnProperty(row.ID)) {
+                checkbox = (
+                  <label htmlFor={row.ID}>
+                    <input
+                      type="checkbox"
+                      id={`itemid-${row.ID}`}
+                      name="itemId"
+                      value={row.ID}
+                      defaultChecked
+                      onChange={this.handleInputChange}
+                    />
+                  </label>
+                )
+              } else {
+                checkbox = <span>-</span>
+              }
               return (
                 <tr key={row.ID}>
-                  <td>-</td>
+                  <td>{checkbox}</td>
                   {this.state.orderitems.getTableHeaders().items.map(col => {
                     if (col.key === "ImageURL") {
                       return (
                         <td key={row.ID + "-" + col.key}>
-                          <img src={row[col.key]} />
+                          <img src={row[col.key]} alt={row.StyleNumber} />
                         </td>
                       )
                     } else {
-                      return <td key={row.ID + "-" + col.key}>{row[col.key]}</td>
+                      return (
+                        <td key={row.ID + "-" + col.key}>{row[col.key]}</td>
+                      )
                     }
                   })}
                   <td>{row.RMANumber}</td>
@@ -109,6 +132,20 @@ export default class OrderDetail extends React.Component {
             })}
           </tbody>
         </Table>
+        <label htmlFor="action">
+          <input
+            type="text"
+            id="action"
+            name="action"
+            size="40"
+            placeholder="scan bar code for process or skip"
+            value={this.state.action}
+            onChange={this.handleInputChange}
+            onBlur={this.handleBlur}
+          />
+        </label>
+        <br />
+        <br />
       </form>
     )
   }

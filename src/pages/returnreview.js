@@ -113,57 +113,7 @@ export default class ReturnReview extends React.Component {
 
 
           <table>
-            <thead>
-              <tr>
-                <th>Select</th>
-                <th>
-                  Order Item Id
-                  <div style={{ display: "none" }}> ID in OMS </div>
-                </th>
-                <th>
-                  SKU
-                  <div style={{ display: "none" }}>
-                    SKU in OMS and mapped to SAP_MaterialNumber
-                  </div>
-                </th>
-                <th>
-                  Product Name
-                  <div style={{ display: "none" }}> StyleNumber in OMS </div>
-                  <div style={{ display: "none" }}>
-                    Do we want the scene 7 URL
-                  </div>
-                </th>
-                <th>
-                  Color
-                  <div style={{ display: "none" }}> Attribute in OMS </div>
-                </th>
-                <th>
-                  Size
-                  <div style={{ display: "none" }}> ProductSize in OMS </div>
-                </th>
-                <th>
-                  Quantiy
-                  <div style={{ display: "none" }}> Quantity in OMS </div>
-                </th>
-                <th>
-                  Status
-                  <div style={{ display: "none" }}> ItemStatusName in OMS </div>
-                </th>
-                <th>
-                  RmaNumber
-                  <div style={{ display: "none" }}>
-                    Rmaorder.OrderNumber ???? in OMS
-                  </div>
-                  <div style={{ display: "none" }}>
-                    Do we need isRMACanceled ???
-                  </div>
-                  <div style={{ display: "none" }}>
-                    Note: we should probably look at update based on the order
-                    mapping Probably need Image, Style #, if Stork Craft
-                  </div>
-                </th>
-              </tr>
-            </thead>
+
             <tbody>
               <tr>
                 <td>
@@ -233,16 +183,7 @@ export default class ReturnReview extends React.Component {
               </tr>
             </tbody>
           </table>
-          <p>
-            <span>
-              <b>
-                Please check the box for the items selected above. If items are
-                missing, broken, or incorrect please uncheck those items. <br />
-                If all items are missing, broken or incorrect, please scan the
-                skip barcode and the page will advance doing no processing.
-              </b>
-            </span>
-          </p>
+
           <label htmlFor="action">
             <input
               type="text"
@@ -258,6 +199,17 @@ export default class ReturnReview extends React.Component {
           <br />
           <br />
         </form>
+
+        <p>
+            <span>
+              <b>
+                Please check the box for the items selected above. If items are
+                missing, broken, or incorrect please uncheck those items. <br />
+                If all items are missing, broken or incorrect, please scan the
+                skip barcode and the page will advance doing no processing.
+              </b>
+            </span>
+          </p>
         <br />
         <h3>Notes:</h3>
 
