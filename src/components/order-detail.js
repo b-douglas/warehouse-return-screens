@@ -1,14 +1,20 @@
 import React from "react"
 import Table from "react-bootstrap/Table"
+import { Link, navigate } from "gatsby"
 
 export default class OrderDetail extends React.Component {
   constructor(props) {
     super(props)
 
+    const itemsMap = new Map()
+    itemsMap.set("123", true)
+    itemsMap.set("456", true)
+
     this.state = {
-      //   action: "",
-      //   items: itemsMap,
-      // }
+      action: "",
+      orderitems: props.orderitems,
+      renderForm: props.renderForm,
+      selectMap: itemsMap,
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -69,57 +75,41 @@ export default class OrderDetail extends React.Component {
 
   render() {
     return (
-      <Table striped bordered hover responsive="md">
-        <thead>
-          <tr>
-            <th>Select</th>
-            <th>
-              Order Item Id
-              <div style={{ display: "none" }}> ID in OMS </div>
-            </th>
-            <th>
-              SKU
-              <div style={{ display: "none" }}>
-                SKU in OMS and mapped to SAP_MaterialNumber
-              </div>
-            </th>
-            <th>
-              Product Name
-              <div style={{ display: "none" }}> StyleNumber in OMS </div>
-              <div style={{ display: "none" }}>Do we want the scene 7 URL</div>
-            </th>
-            <th>
-              Color
-              <div style={{ display: "none" }}> Attribute in OMS </div>
-            </th>
-            <th>
-              Size
-              <div style={{ display: "none" }}> ProductSize in OMS </div>
-            </th>
-            <th>
-              Quantiy
-              <div style={{ display: "none" }}> Quantity in OMS </div>
-            </th>
-            <th>
-              Status
-              <div style={{ display: "none" }}> ItemStatusName in OMS </div>
-            </th>
-            <th>
-              RmaNumber
-              <div style={{ display: "none" }}>
-                Rmaorder.OrderNumber ???? in OMS
-              </div>
-              <div style={{ display: "none" }}>
-                Do we need isRMACanceled ???
-              </div>
-              <div style={{ display: "none" }}>
-                Note: we should probably look at update based on the order
-                mapping Probably need Image, Style #, if Stork Craft
-              </div>
-            </th>
-          </tr>
-        </thead>
-      </Table>
+      <form onSubmit={this.handleSubmit} method="POST">
+        <Table striped bordered hover responsive="md">
+          <thead>
+            <tr>
+              {this.state.renderForm === true && <th>Select</th>}
+              {this.state.orderitems.getTableHeaders().items.map(i => {
+                return <th key={i.key}>{i.name}</th>
+              })}
+              <th>{this.state.orderitems.getTableHeaders().rma.name}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.orderitems.getItems().map(row => {
+              console.debug(row)
+              return (
+                <tr key={row.ID}>
+                  <td>-</td>
+                  {this.state.orderitems.getTableHeaders().items.map(col => {
+                    if (col.key === "ImageURL") {
+                      return (
+                        <td key={row.ID + "-" + col.key}>
+                          <img src={row[col.key]} />
+                        </td>
+                      )
+                    } else {
+                      return <td key={row.ID + "-" + col.key}>{row[col.key]}</td>
+                    }
+                  })}
+                  <td>{row.RMANumber}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
+      </form>
     )
   }
 }
