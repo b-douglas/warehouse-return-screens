@@ -10,6 +10,61 @@ export default class OrderDetail extends React.Component {
       //   items: itemsMap,
       // }
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleInputChange(event) {
+    const target = event.target
+    const value = target.value
+    const name = target.name
+
+    if (name === "itemId") {
+      const itemsMap = this.state.items
+      if (target.checked) {
+        itemsMap.set(value, true)
+      } else {
+        itemsMap.set(value, false)
+      }
+    } else {
+      this.setState({
+        [name]: value,
+      })
+    }
+  }
+
+  handleBlur(event) {
+    const itemsMap = this.state.items
+    let mystring = ""
+
+    if (this.state.action === "process") {
+      //do nothing
+      // Maybe call the api Here?
+      mystring += `Call api/OmsRmaInboundReturn `
+    } else if (this.state.action === "skip") {
+      mystring += `Skipping `
+      for (var key of itemsMap.keys()) {
+        itemsMap.set(key, false)
+      }
+    } else {
+      alert(`need to enter in skip or process`)
+      return
+    }
+
+    for (var skey of itemsMap.keys()) {
+      mystring += `[${skey} , ${itemsMap.get(skey)}] `
+    }
+    alert(mystring) //Need to only make call on items that are true
+    //Maybe make the call on the return confirmation page??
+    //Not sure how I want to handle errors yet.
+
+    navigate("/returnconfirmation") // Need to pass the state of the API call to the next page
+    // state { token , action, selected items, unseleced items}
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
   }
 
   render() {
