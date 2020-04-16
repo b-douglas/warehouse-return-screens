@@ -6,6 +6,9 @@ import SEO from "../components/seo"
 import OrderHeader from "../components/order-header"
 import OrderDetail from "../components/order-detail"
 
+const odpayload =
+  '{"OrderDetails": [{"EmailAddress": "gatsby@person.com", "GiftMessage": null, "OrderNumber": "00000901", "OrderStatus": "Pending", "OrderDateAsDate": "2020-04-10T13:51:53.093", "OrderDate": "4/10/2020 1:51:53 PM", "OrderStatusCode": "P", "ShippingMethod": "Ground", "CustomerID": "00005001", "ShippingMethodID": 2, "CustomerOrderLocale": "en-US", "Shipments": [{"TrackingNumber": "1Z971EY9YW00000000", "OrderShipmentID": 144, "OrderID": 79427, "Shipped": true, "DateShipped": "2020-04-10T16:09:18.91", "ShippingMethod": "Ground", "ShippingAddressID": 164158, "Items": [{"OrderShipmentID": 144, "OrderShipmentItemID": 226, "OrderItemID": 84389, "Tracking": "1Z971EY9YW00000000", "InternalItemStatusCode": null, "MarkForDeletion": false, "ShippingErrorID": 0, "IsChanged": false, "DeliveredDateUTC": null } ], "GroupedShipmentItems": null, "PaymentTransactions": [{"ID": 68, "OrderShipmentID": 144, "PaymentTransactionID": 273, "Amount": 113.0, "OrderPaymentID": 165, "PaymentApplied": true, "DateCreated": "0001-01-01T00:00:00", "IsChanged": false } ], "OrderTransactionIdentifier": 2, "WarehouseCountNumber": 2, "PODate": "1753-01-01T00:00:00", "PONumber": null, "InternalSalesNumber": null, "InternalStatusCode": null, "WarehouseID": 1, "Totals": {"MerchandiseNetTotal": 99.99, "MerchandiseGrossTotal": 106.61, "AdjustedMerchandiseNetTotal": 99.99, "AdjustedMerchandiseGrossTotal": 106.61, "ShippingNetTotal": 5.99, "ShippingGrossTotal": 6.39, "AdjustedShippingNetTotal": 5.99, "AdjustedShippingGrossTotal": 6.39, "TotalNetTotal": 105.98, "TotalGrossTotal": 113.0, "ProcessingFee": 0.0, "IsChanged": false }, "Taxes": [{"ID": 69, "OrderShipmentID": 144, "TaxType": 2, "Amount": 0.4, "IsChanged": false, "TaxExempt": false } ], "InvoiceNumber": null } ], "Returns": [], "RMAS": [{"RmaNumber": "RMA00000001X", "RmaID": 3, "Status": "Pending", "DateCreated": "2020-04-10T17:31:34.73", "Orders": [{"RmaOrderID": 1, "OrderID": 79427, "OrderNumber": "00000901", "Items": [{"RmaOrderItemID": 1, "OrderItemID": 84389, "ReturnReasonID": 1, "ReturnReasonText": "Did not like it", "ReturnTypeID": 2, "ReturnType": "InventoryReturn", "TrackingNumber": "1Z456", "CarrierCode": "Ground", "ExternalItemID": null, "PhysicalReturnNotRequired": false, "ReturnNoCredit": false, "IsRmaCancelled": false } ] } ] } ], "CustomerAddress": {"FirstName": "Jeff", "PhoneticFirstName": null, "LastName": "Bezos", "PhoneticLastName": null, "Address1": "410 Terry Avenue", "Address2": null, "Address3": null, "City": "North Seattle", "Province": "Washington", "PostalCode": "98109-5210", "Country": "USA", "Email": "Jeff.Bezos@warehouse.com", "Phone": "8005555555", "MobilePhone": null, "CompanyName": null, "Salutation": null, "Suffix": null }, "ShipAddress": {"FirstName": "Jeff", "PhoneticFirstName": null, "LastName": "Bezos", "PhoneticLastName": null, "Address1": "410 Terry Avenue", "Address2": null, "Address3": null, "City": "North Seattle", "Province": "Washington", "PostalCode": "98109-5210", "Country": "USA", "Email": "Jeff.Bezos@warehouse.com", "Phone": "8005555555", "MobilePhone": null, "CompanyName": null, "Salutation": null, "Suffix": null }, "Items": [{"ExternalItemID": null, "ItemStatusName": "Pending Return", "ItemStatusCode": "IRPR", "Extended": [], "GTIN": "DAL_1927133", "DeckSKU": "DAL_1927133", "StyleNumber": "Complex Turbulent® Other", "ProductSize": "", "Attribute": null, "Custom1": "Washington", "Custom2": null, "Custom3": null, "Custom4": null, "Custom5": null, "ImageURL": "https://s7d1.scene7.com/is/image/Newellsync/14125?wid=1000&hei=1000", "ItemTypeID": 3, "MSRP": 0.0, "Adjustments": [], "ItemType": "RegularItem", "ID": 84389, "Quantity": 1, "DisplayPrice": 99.99, "DisplayDiscount": 0.0, "ItemShippingMethod": "Ground", "EstimatedShipDate": null, "MarketingText": null, "MarketingPrice": null, "ESDStart": null, "ESDEnd": null, "StatusChangeDateUTC": "2020-04-10T16:09:45.31", "TrackingUrl": "", "ItemTaxes": [{ "TaxType": "USSalesTotal", "TotalAmount": 6.62 }] }, {"ExternalItemID": null, "ItemStatusName": "Shipped", "ItemStatusCode": "IZ", "Extended": [], "GTIN": "DAL_50411", "DeckSKU": "DAL_50411", "StyleNumber": "Toilet Paper Pack", "ProductSize": "", "Attribute": null, "Custom1": "White", "Custom2": null, "Custom3": null, "Custom4": null, "Custom5": null, "ImageURL": "https://s7d1.scene7.com/is/image/Newellsync/15781?wid=1000&hei=1000", "ItemTypeID": 3, "MSRP": 0.0, "Adjustments": [], "ItemType": "RegularItem", "ID": 84368, "Quantity": 1, "DisplayPrice": 11.99, "DisplayDiscount": 0.0, "ItemShippingMethod": "Ground", "EstimatedShipDate": null, "MarketingText": null, "MarketingPrice": null, "ESDStart": null, "ESDEnd": null, "StatusChangeDateUTC": "2020-04-10T16:27:12.03", "TrackingUrl": "", "ItemTaxes": [{ "TaxType": "USSalesTotal", "TotalAmount": 1.07 }] } ], "Totals": {"MerchandiseNetTotal": 99.99, "MerchandiseGrossTotal": 106.61, "AdjustedMerchandiseNetTotal": 99.99, "AdjustedMerchandiseGrossTotal": 106.61, "ShippingNetTotal": 5.99, "ShippingGrossTotal": 6.39, "AdjustedShippingNetTotal": 5.99, "AdjustedShippingGrossTotal": 6.39, "TotalNetTotal": 105.98, "TotalGrossTotal": 113.0, "ProcessingFee": 0.0 }, "SimpleTotals": {"SubTotal": 99.99, "OriginalShipping": 5.99, "Shipping": 5.99, "Discount": 0.0, "Tax": 7.02, "Total": 113.0, "ProcessingFee": 0.0, "TaxDetails": [{ "TaxType": "Tax", "TotalAmount": 7.02 }] }, "Payments": [{"PaymentName": "Visa", "Amount": 113.0, "CreditCardSuffix": "1111", "PaymentID": 0 } ], "CustomAttributes": [], "CurrencyCode": "USD", "CollectionCode": null, "GroupCode": null, "IsLegacy": false, "ShippingMethodDescription": "Ground"} ], "ResponseCode": 0, "Message": "", "TotalRecordsAvailable": 1, "CurrentPageNumber": 1, "TotalPages": 1 }'
+
 export default class ReturnReview extends React.Component {
   constructor(props) {
     super(props)
@@ -14,25 +17,29 @@ export default class ReturnReview extends React.Component {
     itemsMap.set("123", true)
     itemsMap.set("456", true)
 
+    const order = JSON.parse(odpayload).OrderDetails[0]
+
+    console.debug(order)
+
+    let orderheaders = [
+      { key: "OrderNumber", name: "Order Number", value: order.OrderNumber },
+      { key: "OrderDate", name: "Order Date", value: order.OrderDate },
+      { key: "OrderStatus", name: "Order Status", value: order.OrderStatus },
+      { key: "CustomerID", name: "Customer Id", value: order.CustomerID },
+      { key: "EmailAddress", name: "Email Address", value: order.EmailAddress },
+    ]
+
+    console.debug(orderheaders)
+
     this.state = {
       action: "",
       items: itemsMap,
+      orderheader: orderheaders,
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-
-    this.orderheaders = [
-      { key: "OrderNumber", name: "Order Number", value: "9283745298" },
-      { key: "OrderDate", name: "Order Date", value: "03/18/2020" },
-      {
-        key: "OrderStatusCode",
-        name: "Order Status Code",
-        value: "Completed or Manual Review",
-      },
-      { key: "CustomerId", name: "Customer Id", value: "5986743" },
-    ]
 
     this.colHeaders = []
     this.rowDetail = []
@@ -96,11 +103,13 @@ export default class ReturnReview extends React.Component {
         <SEO title="ReturnReview" />
         <h1>Order Review Screen</h1>
 
-        <OrderHeader orderheaders={this.orderheaders} />
+        <OrderHeader orderheaders={this.state.orderheader} />
 
         <form onSubmit={this.handleSubmit} method="POST">
-
-        <OrderDetail columnHeaders={this.colHeaders} rowDetail={this.rowDetail} />
+          <OrderDetail
+            columnHeaders={this.colHeaders}
+            rowDetail={this.rowDetail}
+          />
 
           <table>
             <thead>
