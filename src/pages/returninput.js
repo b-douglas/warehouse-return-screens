@@ -6,6 +6,7 @@ import SEO from "../components/seo"
 
 export default class ReturnInput extends React.Component {
   constructor(props) {
+    console.debug(props.location.state)
     super(props)
     this.state = {
       ordernumber: "",

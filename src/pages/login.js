@@ -11,7 +11,7 @@ export default class LoginPage extends React.Component {
     this.state = {
       userid: "enter your user id",
       password: "place",
-      sitecode: "",
+      sitecode: "Gracobaby",
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -33,14 +33,9 @@ export default class LoginPage extends React.Component {
     alert(
       `Call api/token with { ${this.state.userid} , ${this.state.password} }`
     )
-    navigate(
-      "/returninput",
-      {
-        apitoken: undefined,
-        sitecode: this.state.sitecode,
-      },
-      true
-    )
+    navigate("/returninput", {
+      state: { apitoken: undefined, sitecode: this.state.sitecode },
+    })
   }
 
   render() {
@@ -65,13 +60,13 @@ export default class LoginPage extends React.Component {
                   name="sitecode"
                   id="sidecode"
                   className="siteSelection selectItem"
+                  value={this.state.sitecode}
+                  onChange={this.handleInputChange}
                 >
                   <option value="Baby Jogger">Baby Jogger</option>
                   <option value="Calphalon">Calphalon</option>
                   <option value="FoodSaver">FoodSaver</option>
-                  <option value="Gracobaby" selected="selected">
-                    Gracobaby
-                  </option>
+                  <option value="Gracobaby">Gracobaby</option>
                   <option value="Holmes">Holmes</option>
                   <option value="Marmot">Marmot</option>
                 </select>
