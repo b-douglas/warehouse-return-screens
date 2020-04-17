@@ -11,6 +11,7 @@ export default class LoginPage extends React.Component {
     this.state = {
       userid: "enter your user id",
       password: "place",
+      sitecode: "",
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -32,7 +33,14 @@ export default class LoginPage extends React.Component {
     alert(
       `Call api/token with { ${this.state.userid} , ${this.state.password} }`
     )
-    navigate("/returninput") //need to pass the state of the variable to the next page
+    navigate(
+      "/returninput",
+      {
+        apitoken: undefined,
+        sitecode: this.state.sitecode,
+      },
+      true
+    )
   }
 
   render() {
