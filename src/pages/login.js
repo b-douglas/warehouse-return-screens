@@ -52,15 +52,21 @@ export default class LoginPage extends React.Component {
           <form onSubmit={this.handleSubmit} method="POST">
             <div className="formField formFieldInputFocus">
               <label htmlFor="sitecode">
-              <b>Site:</b>
-              <select name="sitecode" id="sidecode" className="siteSelection selectItem">
-                <option value="Baby Jogger">Baby Jogger</option>
-                <option value="Calphalon">Calphalon</option>
-                <option value="FoodSaver">FoodSaver</option>
-                <option value="Gracobaby" selected="selected">Gracobaby</option>
-                <option value="Holmes">Holmes</option>
-                <option value="Marmot">Marmot</option>
-        </select>
+                <b>Site:</b>
+                <select
+                  name="sitecode"
+                  id="sidecode"
+                  className="siteSelection selectItem"
+                >
+                  <option value="Baby Jogger">Baby Jogger</option>
+                  <option value="Calphalon">Calphalon</option>
+                  <option value="FoodSaver">FoodSaver</option>
+                  <option value="Gracobaby" selected="selected">
+                    Gracobaby
+                  </option>
+                  <option value="Holmes">Holmes</option>
+                  <option value="Marmot">Marmot</option>
+                </select>
               </label>
               <br />
               <b>
