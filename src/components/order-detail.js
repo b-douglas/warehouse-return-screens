@@ -1,6 +1,6 @@
 import React from "react"
 import Table from "react-bootstrap/Table"
-import { Link, navigate } from "gatsby"
+import { navigate } from "gatsby"
 
 export default class OrderDetail extends React.Component {
   constructor(props) {
