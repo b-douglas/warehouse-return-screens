@@ -11,6 +11,7 @@ export default class LoginPage extends React.Component {
     this.state = {
       userid: "enter your user id",
       password: "place",
+      sitecode: "",
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -32,7 +33,14 @@ export default class LoginPage extends React.Component {
     alert(
       `Call api/token with { ${this.state.userid} , ${this.state.password} }`
     )
-    navigate("/returninput") //need to pass the state of the variable to the next page
+    navigate(
+      "/returninput",
+      {
+        apitoken: undefined,
+        sitecode: this.state.sitecode,
+      },
+      true
+    )
   }
 
   render() {
@@ -51,8 +59,26 @@ export default class LoginPage extends React.Component {
         <div className={styles.login}>
           <form onSubmit={this.handleSubmit} method="POST">
             <div className="formField formFieldInputFocus">
+              <label htmlFor="sitecode">
+                <b>Site:</b>
+                <select
+                  name="sitecode"
+                  id="sidecode"
+                  className="siteSelection selectItem"
+                >
+                  <option value="Baby Jogger">Baby Jogger</option>
+                  <option value="Calphalon">Calphalon</option>
+                  <option value="FoodSaver">FoodSaver</option>
+                  <option value="Gracobaby" selected="selected">
+                    Gracobaby
+                  </option>
+                  <option value="Holmes">Holmes</option>
+                  <option value="Marmot">Marmot</option>
+                </select>
+              </label>
+              <br />
               <b>
-                <label htmlFor="userid">Username </label>
+                <label htmlFor="userid">Username:</label>
               </b>
               <input
                 type="text"
@@ -65,7 +91,7 @@ export default class LoginPage extends React.Component {
             </div>
             <div className="formField">
               <b>
-                <label htmlFor="password">Password </label>
+                <label htmlFor="password">Password:</label>
               </b>
               <input
                 type="password"
