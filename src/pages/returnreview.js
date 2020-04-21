@@ -109,97 +109,6 @@ export default class ReturnReview extends React.Component {
         <OrderDetail orderitems={this.state.orderitems}
             renderForm={true}  />
 
-        <form onSubmit={this.handleSubmit} method="POST">
-
-
-          <table>
-
-            <tbody>
-              <tr>
-                <td>
-                  <label htmlFor="itemId">
-                    <input
-                      type="checkbox"
-                      id="itemId1"
-                      name="itemId"
-                      value="123"
-                      defaultChecked
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                </td>
-                <td>9871</td>
-                <td>123</td>
-                <td>BleroForm LS Shirt</td>
-                <td>Green</td>
-                <td>XL</td>
-                <td>1</td>
-                <td>Pending Return</td>
-                <td>987</td>
-              </tr>
-              <tr>
-                <td>-</td>
-                <td>9872</td>
-                <td>234</td>
-                <td>Men's Jacket</td>
-                <td>Red</td>
-                <td>XL</td>
-                <td>1</td>
-                <td>Cancelled</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>-</td>
-                <td>9873</td>
-                <td>345</td>
-                <td>Men's 5th and F Pants</td>
-                <td>Black</td>
-                <td>36</td>
-                <td>1</td>
-                <td>Returned</td>
-                <td>345</td>
-              </tr>
-              <tr>
-                <td>
-                  <label htmlFor="itemId">
-                    <input
-                      type="checkbox"
-                      id="itemId2"
-                      name="itemId"
-                      value="456"
-                      defaultChecked
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                </td>
-                <td>9874</td>
-                <td>456</td>
-                <td>Men's Blarch Block Pants</td>
-                <td>Black</td>
-                <td>36</td>
-                <td>1</td>
-                <td>Pending Return</td>
-                <td>987</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <label htmlFor="action">
-            <input
-              type="text"
-              id="action"
-              name="action"
-              size="40"
-              placeholder="scan bar code for process or skip"
-              value={this.state.action}
-              onChange={this.handleInputChange}
-              onBlur={this.handleBlur}
-            />
-          </label>
-          <br />
-          <br />
-        </form>
-
         <p>
             <span>
               <b>
@@ -211,6 +120,7 @@ export default class ReturnReview extends React.Component {
             </span>
           </p>
         <br />
+           {/* 
         <h3>Notes:</h3>
 
         <ol>
@@ -235,6 +145,7 @@ export default class ReturnReview extends React.Component {
             asked to go into OMS UI to update them.
           </li>
         </ol>
+           */}
 
         {/* 
         End of Custom HTML
