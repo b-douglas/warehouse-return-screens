@@ -2,24 +2,50 @@ import React from "react"
 import Table from "react-bootstrap/Table"
 import { navigate } from "gatsby"
 
+
+//TODO: Need to move the handlers back to the returnReview page
+//     Then  make sure that the checkboxes call the input change handler
+//     then need to pass the input change handler to this class
 export default class OrderDetail extends React.Component {
   constructor(props) {
     super(props)
 
-    const selectedProps = {
-      84389: true,
-      84369: true,
-    }
+    const orderitems = props.orderitems
+    const rmanumber = props.rmanumber
+    const renderForm = props.renderForm
+    const selectedProps = this.getSelectedProps(orderitems, rmanumber)
 
     this.state = {
       action: "",
-      orderitems: props.orderitems,
-      renderForm: props.renderForm,
+      orderitems: orderitems,
+      renderForm: renderForm,
+      rmanumber: rmanumber,
       selectProps: selectedProps,
     }
+
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  getSelectedProps(orderitems, rmanumber) {
+    let selectedProps = {}
+
+    orderitems.getItems().forEach(item => {
+      if ("Pending Return" === item.ItemStatusName) {
+        //Note if RMA Number is null then we want to show all order items that are `PendingReturn`
+        if (rmanumber === item.RMANumber) {
+          selectedProps[item.ID] = true
+        } else {
+          selectedProps[item.ID] = false
+        }
+      } else {
+        console.debug(
+          `Items RMANumber did not match {${item.ID} ${item.StyleNumber} ${item.ItemStatusName} ${item.RMANumber}}`
+        )
+      }
+    })
+    return selectedProps
   }
 
   handleInputChange(event) {
@@ -77,6 +103,7 @@ export default class OrderDetail extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.handleBlur()
   }
 
   render() {
@@ -96,18 +123,32 @@ export default class OrderDetail extends React.Component {
             {this.state.orderitems.getItems().map(row => {
               let checkbox
               if (this.state.selectProps.hasOwnProperty(row.ID)) {
-                checkbox = (
-                  <label htmlFor={row.ID}>
-                    <input
-                      type="checkbox"
-                      id={`itemid-${row.ID}`}
-                      name="itemId"
-                      value={row.ID}
-                      defaultChecked
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                )
+                if (this.state.selectProps[row.ID] == true) {
+                  checkbox = (
+                    <label htmlFor={row.ID}>
+                      <input
+                        type="checkbox"
+                        id={`itemid-${row.ID}`}
+                        name="itemId"
+                        value={row.ID}
+                        defaultChecked
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+                  )
+                } else if (this.state.selectProps[row.ID] == false) {
+                  checkbox = (
+                    <label htmlFor={row.ID}>
+                      <input
+                        type="checkbox"
+                        id={`itemid-${row.ID}`}
+                        name="itemId"
+                        value={row.ID}
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+                  )
+                }
               } else {
                 checkbox = <span>-</span>
               }

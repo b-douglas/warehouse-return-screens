@@ -6,12 +6,12 @@ import SEO from "../components/seo"
 
 export default class ReturnInput extends React.Component {
   constructor(props) {
-    console.debug(props.location.state)
     super(props)
     this.state = {
       ordernumber: "",
       rmanumber: "",
     }
+    Object.assign(this.state, props.location.state)
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -32,7 +32,14 @@ export default class ReturnInput extends React.Component {
     alert(
       `Call api/OmsOrderHistory ( ${this.state.ordernumber} , ${this.state.rmanumber} )`
     )
-    navigate("/returnreview") // Need to pass the state of the API call to the next page
+    navigate("/returnreview", {
+      state: {
+        apitoken: undefined,
+        sitecode: this.state.sitecode,
+        ordernumber: this.state.ordernumber,
+        rmanumber: this.state.rmanumber,
+      },
+    })
   }
 
   handleSubmit(event) {

@@ -18,6 +18,7 @@ export default class OrderItems {
         { name: "Color", key: "Attribute" },
         { name: "Size", key: "ProductSize" },
         { name: "Quantity", key: "Quantity" },
+        { name: "Status", key: "ItemStatusName" },
       ],
     }
     return th
