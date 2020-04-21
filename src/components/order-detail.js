@@ -8,6 +8,7 @@ export default class OrderDetail extends React.Component {
 
     const selectedProps = {
       84389: true,
+      84369: true,
     }
 
     this.state = {

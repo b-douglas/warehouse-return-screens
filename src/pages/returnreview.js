@@ -36,9 +36,6 @@ export default class ReturnReview extends React.Component {
       orderitems: orderitems,
     }
 
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   render() {
