@@ -64,7 +64,7 @@ export default class ReturnConfirmation extends React.Component {
         </div>
       )
     } else {
-      wasprocessed = <div className={styles.processed}></div>
+      wasprocessed = null
     }
     let wasskipped
     if (this.state.skipped.length > 0) {
@@ -75,7 +75,7 @@ export default class ReturnConfirmation extends React.Component {
             <span>
               <b>
                 Please login to OMS UI, and update the following items with
-                missing, broken, or incorrect.
+                missing, broken, or incorrect. <br />
                 <i>Make sure to add a note to notify Consumer Services</i>
               </b>
             </span>
@@ -87,16 +87,30 @@ export default class ReturnConfirmation extends React.Component {
         </div>
       )
     } else {
-      wasskipped = <div className={styles.skipped}></div>
+      wasskipped = null
     }
+
+    if (wasskipped === null && wasprocessed === null)
+      wasprocessed = (
+        <div className="alert alert-danger">
+          <p>
+            <span>
+              <b>
+                Nothing was processed and nothing was skipped. <br/>
+                <i>Please try the order again or try a different order.</i>
+              </b>
+            </span>
+          </p>
+        </div>
+      )
 
     return (
       <Layout>
         <SEO title="ReturnConfirmation" />
 
         {actionh1}
-        <div className="container">{wasprocessed}</div>
-        <div className="container">{wasskipped}</div>
+        <div className="container-fluid">{wasprocessed}</div>
+        <div className="container-fluid">{wasskipped}</div>
         <div className="container-fluid">
           <Link to="/returninput">Return Input</Link>
         </div>

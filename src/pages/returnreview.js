@@ -16,8 +16,6 @@ export default class ReturnReview extends React.Component {
 
     const order = JSON.parse(odpayload).OrderDetails[0]
 
-    //console.debug(order)
-
     let orderheaders = [
       { key: "OrderNumber", name: "Order Number", value: order.OrderNumber },
       { key: "OrderDate", name: "Order Date", value: order.OrderDate },
@@ -25,8 +23,6 @@ export default class ReturnReview extends React.Component {
       { key: "CustomerID", name: "Customer Id", value: order.CustomerID },
       { key: "EmailAddress", name: "Email Address", value: order.EmailAddress },
     ]
-
-    //console.debug(orderheaders)
 
     const orderitems = new OrderItems(order)
 
@@ -36,10 +32,6 @@ export default class ReturnReview extends React.Component {
       orderitems: orderitems,
     }
     Object.assign(this.state, props.location.state)
-
-    //this.state.sitecode="Gracobaby"
-    this.state.rmanumber = "RMA00000001X"
-    // this.state.rmanumber = undefined
 
     const selectedProps = this.getSelectedProps(
       orderitems,
@@ -62,12 +54,8 @@ export default class ReturnReview extends React.Component {
       if ("Pending Return" === item.ItemStatusName) {
         if (rmanumber === item.RMANumber) {
           selectedProps[item.ID] = true
-        } else if (
-          rmanumber === undefined ||
-          rmanumber === "" ||
-          rmanumber === null
-        ) {
-          //Note if RMA Number is null then we want to show all order items that are `PendingReturn`
+        } else if (rmanumber === "0") {
+          //Note if RMA Number is 0 then we want to show all order items that are `PendingReturn`
           console.debug(`RMANubmer input was null or empty {${rmanumber}}`)
           selectedProps[item.ID] = false
         }
@@ -102,6 +90,7 @@ export default class ReturnReview extends React.Component {
   handleBlur(event) {
     const selectedProps = this.state.selectedProps
     let mystring = ""
+    let errormessage
 
     if (this.state.action === "process") {
       //do nothing
@@ -115,8 +104,7 @@ export default class ReturnReview extends React.Component {
         }
       }
     } else {
-      alert(`need to enter in skip or process`)
-      return
+      errormessage = `Need to enter either process or skip`
     }
 
     for (const skey in selectedProps) {
@@ -124,14 +112,21 @@ export default class ReturnReview extends React.Component {
         mystring += `[${skey} , ${selectedProps[skey]}] `
       }
     }
-    alert(mystring) //Need to only make call on items that are true
+    console.debug(mystring) //Need to only make call on items that are true
     //Maybe make the call on the return confirmation page??
     //Not sure how I want to handle errors yet.
 
-    // Need to pass the state of the API call to the next page
-    navigate("/returnconfirmation", {
-      state: this.state,
-    })
+    //Error checking Note: for right now its hardcoded
+    if (errormessage !== undefined) {
+      this.setState({
+        errormessage: errormessage,
+      })
+    } else {
+      // Need to pass the state of the API call to the next page
+      navigate("/returnconfirmation", {
+        state: this.state,
+      })
+    }
   }
 
   handleSubmit(event) {
@@ -139,6 +134,16 @@ export default class ReturnReview extends React.Component {
   }
 
   render() {
+    let errors
+    if (this.state.errormessage !== undefined) {
+      errors = (
+        <div className="container alert alert-danger">
+          {this.state.errormessage}
+        </div>
+      )
+    } else {
+      errors = null
+    }
     return (
       <Layout>
         <SEO title="ReturnReview" />
@@ -165,6 +170,7 @@ export default class ReturnReview extends React.Component {
             />
           </label>
           <br />
+          {errors}
           <br />
         </form>
 
@@ -179,36 +185,7 @@ export default class ReturnReview extends React.Component {
           </span>
         </p>
         <br />
-        {/* 
-        <h3>Notes:</h3>
 
-        <ol>
-          <li>
-            The items table above is generated from parsing the json respons
-            from the <i>api/OmsOrderHistory</i>
-          </li>
-          <li>
-            The returns specialist will use the gun to scan either
-            <b>process</b> or <b>skip</b> bar code, and that will submit the
-            form.
-          </li>
-          <li>If item is unchecked than it will stay in Pending Return</li>
-          <li>
-            Scanning <b>skip</b> will do nothing except forward to a screen
-            reminding the Returns specalist to update the items in OMS UI
-          </li>
-          <li>
-            Scanning <b>process</b> will send all checked items as
-            <b>returned</b> via <i>api/OmsRmaInboundReturn</i> <br />
-            and all uncheked items wil be skipped and returns specialist will be
-            asked to go into OMS UI to update them.
-          </li>
-        </ol>
-           */}
-
-        {/* 
-        End of Custom HTML
-*/}
         <Link to="/">Go back to the homepage</Link>
       </Layout>
     )

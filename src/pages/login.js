@@ -61,6 +61,7 @@ export default class LoginPage extends React.Component {
                   id="sidecode"
                   className="siteSelection selectItem"
                   value={this.state.sitecode}
+                  onBlur={this.handleInputChange}
                   onChange={this.handleInputChange}
                 >
                   <option value="Baby Jogger">Baby Jogger</option>
@@ -79,6 +80,7 @@ export default class LoginPage extends React.Component {
                 type="text"
                 id="userid"
                 name="userid"
+                autoComplete="username"
                 value={this.state.userid}
                 onChange={this.handleInputChange}
               />
@@ -92,6 +94,7 @@ export default class LoginPage extends React.Component {
                 type="password"
                 id="password"
                 name="password"
+                autoComplete="current-password"
                 value={this.state.password}
                 onChange={this.handleInputChange}
               />

@@ -29,17 +29,33 @@ export default class ReturnInput extends React.Component {
   }
 
   handleBlur(event) {
-    alert(
+    console.warn(
       `Call api/OmsOrderHistory ( ${this.state.ordernumber} , ${this.state.rmanumber} )`
     )
-    navigate("/returnreview", {
-      state: {
-        apitoken: undefined,
-        sitecode: this.state.sitecode,
-        ordernumber: this.state.ordernumber,
-        rmanumber: this.state.rmanumber,
-      },
-    })
+
+    //Error checking Note: for right now its hardcoded
+    if (this.state.ordernumber !== "00000901") {
+      this.setState({
+        errormessage: `Order ${this.state.ordernumber} does not exist!`,
+      })
+    } else if (
+      this.state.rmanumber !== "RMA00000001X" &&
+      this.state.rmanumber !== "RMA00000002X" &&
+      this.state.rmanumber !== "0"
+    ) {
+      this.setState({
+        errormessage: `RMANumber ${this.state.rmanumber} is incorrect!`,
+      })
+    } else {
+      navigate("/returnreview", {
+        state: {
+          apitoken: undefined,
+          sitecode: this.state.sitecode,
+          ordernumber: this.state.ordernumber,
+          rmanumber: this.state.rmanumber,
+        },
+      })
+    }
   }
 
   handleSubmit(event) {
@@ -47,67 +63,62 @@ export default class ReturnInput extends React.Component {
   }
 
   render() {
+    let errors
+    if (this.state.errormessage !== undefined) {
+      errors = (
+        <div className="container alert alert-danger">
+          {this.state.errormessage}
+        </div>
+      )
+    } else {
+      errors = null
+    }
     return (
       <Layout>
         <SEO title="ReturnInput" />
+        <div className="container">
+          <h1>Returns Input Screen</h1>
 
-        {/*
-        Begin of Custom HTML
-        */}
+          <p>
+            <i>
+              To Test please use: <br />
+              order number == 00000901 <br />
+              rmanumber == RMA00000001X || RMA00000002X || 0
+            </i>
+          </p>
 
-        <h1>Returns Input Screen</h1>
+          <form onSubmit={this.handleSubmit} method="POST">
+            <label htmlFor="ordernumber">
+              <b>{"Order Number: "}</b>
+              <input
+                type="text"
+                id="ordernumber"
+                name="ordernumber"
+                value={this.state.ordernumber}
+                onChange={this.handleInputChange}
+                placeholder="scan barcode from box"
+              />
+            </label>
+            <br />
 
-        <form onSubmit={this.handleSubmit} method="POST">
-          <label htmlFor="ordernumber">
-            <b>{"Order Number: "}</b>
-            <input
-              type="text"
-              id="ordernumber"
-              name="ordernumber"
-              value={this.state.ordernumber}
-              onChange={this.handleInputChange}
-              placeholder="scan barcode from box"
-            />
-          </label>
-          <br />
+            <label htmlFor="rmanumber">
+              <b>{"RMA Number: "}</b>
+              <input
+                type="text"
+                id="rmanumber"
+                name="rmanumber"
+                value={this.state.rmanumber}
+                onChange={this.handleInputChange}
+                onBlur={this.handleBlur}
+                placeholder="scan barcode from box"
+              />
+            </label>
+            <br />
+            {errors}
+          </form>
 
-          <label htmlFor="rmanumber">
-            <b>{"RMA Number: "}</b>
-            <input
-              type="text"
-              id="rmanumber"
-              name="rmanumber"
-              value={this.state.rmanumber}
-              onChange={this.handleInputChange}
-              onBlur={this.handleBlur}
-              placeholder="scan barcode from box"
-            />
-          </label>
-          <br />
-        </form>
-
-        <h3>Notes:</h3>
-        <ol>
-          <li>Once you tab out of the RMAId field the form should submit</li>
-          {/* <li>If RMA is blank or missing, there should be a Bar Code for 0. Such that if 0, then assume no RMAId. </li> If RMA is blank than allow the whole order to be checked???  Not sure if we want this??  Programatically it can work.  But I am not sure if this make sense yet, also, it adds complexity to the code, code would need to check for `Pending Return` status and only let those be checkable -->
-           */}
-          <li>If RMA is wrong, canceled. Then show an error.</li>
-          <li>
-            Order Id is required, if OrderId does not existing in OMS then show
-            an Red error, `Order does not exist`
-          </li>
-          <li>
-            Form submit will make a call to with OrderId{" "}
-            <i>api/OmsOrderHistory</i> to get the details and then parse the
-            response for the RMA number. It will verify the RMA number.
-          </li>
-        </ol>
-
-        {/*
-        End of Custom HTML
-        */}
-
-        <Link to="/">Go back to the homepage</Link>
+          <Link to="/">Go back to the homepage</Link>
+        </div>
       </Layout>
     )
   }

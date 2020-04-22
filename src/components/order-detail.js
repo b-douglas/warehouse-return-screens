@@ -11,7 +11,7 @@ export default class OrderDetail extends React.Component {
       selectedProps: props.selectedProps,
     }
 
-    if (props.inputChangeHander != undefined) {
+    if (props.inputChangeHander !== undefined) {
       this.handleInputChange = props.inputChangeHander
       this.handleInputChange = this.handleInputChange.bind(this)
     }
@@ -22,7 +22,7 @@ export default class OrderDetail extends React.Component {
     let select
     if (
       this.state.hasOwnProperty("selectedProps") &&
-      this.state.selectedProps != undefined &&
+      this.state.selectedProps !== undefined &&
       Object.keys(this.state.selectedProps).length > 0
     ) {
       select = <th>Select</th>
@@ -41,7 +41,7 @@ export default class OrderDetail extends React.Component {
         <tbody>
           {this.state.items.map(row => {
             let checkbox
-            if (this.state.selectedProps == undefined) {
+            if (this.state.selectedProps === undefined) {
               checkbox = null
             } else if (this.state.selectedProps.hasOwnProperty(row.ID)) {
               if (this.state.selectedProps[row.ID] === true) {
