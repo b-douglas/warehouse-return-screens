@@ -97,7 +97,6 @@ export default class ReturnReview extends React.Component {
         [name]: value,
       })
     }
-    console.debug(this.state.selectedProps)
   }
 
   handleBlur(event) {

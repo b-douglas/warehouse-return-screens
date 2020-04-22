@@ -11,18 +11,27 @@ export default class OrderDetail extends React.Component {
       selectedProps: props.selectedProps,
     }
 
-    this.handleInputChange = props.inputChangeHander
-    this.handleInputChange = this.handleInputChange.bind(this)
+    if (props.inputChangeHander != undefined) {
+      this.handleInputChange = props.inputChangeHander
+      this.handleInputChange = this.handleInputChange.bind(this)
+    }
+    console.debug(this.state)
   }
 
   render() {
+    let select
+    if (
+      this.state.hasOwnProperty("selectedProps") &&
+      this.state.selectedProps != undefined &&
+      Object.keys(this.state.selectedProps).length > 0
+    ) {
+      select = <th>Select</th>
+    }
     return (
       <Table striped bordered hover responsive="md">
         <thead>
           <tr>
-            {Object.keys(this.state.selectedProps).length > 0 && (
-              <th>Select</th>
-            )}
+            {select}
             {this.state.tableheaders.items.map(i => {
               return <th key={i.key}>{i.name}</th>
             })}
@@ -32,39 +41,49 @@ export default class OrderDetail extends React.Component {
         <tbody>
           {this.state.items.map(row => {
             let checkbox
-            if (this.state.selectedProps.hasOwnProperty(row.ID)) {
+            if (this.state.selectedProps == undefined) {
+              checkbox = null
+            } else if (this.state.selectedProps.hasOwnProperty(row.ID)) {
               if (this.state.selectedProps[row.ID] === true) {
                 checkbox = (
-                  <label htmlFor={row.ID}>
-                    <input
-                      type="checkbox"
-                      id={`itemid-${row.ID}`}
-                      name="itemId"
-                      value={row.ID}
-                      defaultChecked
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
+                  <td>
+                    <label htmlFor={row.ID}>
+                      <input
+                        type="checkbox"
+                        id={`itemid-${row.ID}`}
+                        name="itemId"
+                        value={row.ID}
+                        defaultChecked
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+                  </td>
                 )
               } else if (this.state.selectedProps[row.ID] === false) {
                 checkbox = (
-                  <label htmlFor={row.ID}>
-                    <input
-                      type="checkbox"
-                      id={`itemid-${row.ID}`}
-                      name="itemId"
-                      value={row.ID}
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
+                  <td>
+                    <label htmlFor={row.ID}>
+                      <input
+                        type="checkbox"
+                        id={`itemid-${row.ID}`}
+                        name="itemId"
+                        value={row.ID}
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+                  </td>
                 )
               }
             } else {
-              checkbox = <span>-</span>
+              checkbox = (
+                <td>
+                  <span>-</span>
+                </td>
+              )
             }
             return (
               <tr key={row.ID}>
-                <td>{checkbox}</td>
+                {checkbox}
                 {this.state.tableheaders.items.map(col => {
                   if (col.key === "ImageURL") {
                     return (
