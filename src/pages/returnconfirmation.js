@@ -8,19 +8,14 @@ import styles from "./returnconfirmation.module.scss"
 export default class ReturnConfirmation extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {}
 
-    const itemsMap = new Map()
-    itemsMap.set("123", true)
-    itemsMap.set("456", true)
-
-    this.state = {
-      action: "",
-      items: itemsMap,
-    }
+    Object.assign(this.state, props.location.state)
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => navigate("/returninput"), 30000)
+    //Set the timer for 30 seconds and then move the page
+    //this.timer = setInterval(() => navigate("/returninput"), 30000)
   }
 
   componentWillUnmount() {
@@ -28,15 +23,18 @@ export default class ReturnConfirmation extends React.Component {
   }
 
   render() {
+    let actionh1
+    if (this.state.action === "skip") {
+      actionh1 = <h1>Return Confirmation Skipped</h1>
+    } else {
+      actionh1 = <h1>Return Confirmation Processed</h1>
+    }
+    //if()
     return (
       <Layout>
         <SEO title="ReturnConfirmation" />
 
-        {/* 
-        Begin of Custom HTML
-*/}
-
-        <h1>Return Confirmation Processed</h1>
+        {actionh1}
 
         <h3>The following items were returned:</h3>
 
@@ -177,10 +175,6 @@ export default class ReturnConfirmation extends React.Component {
             screen again.
           </li>
         </ol>
-
-        {/* 
-        End of Custom HTML
-*/}
 
         <Link to="/">Go back to the homepage</Link>
       </Layout>

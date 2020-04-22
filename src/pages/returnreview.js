@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -29,19 +29,24 @@ export default class ReturnReview extends React.Component {
     //console.debug(orderheaders)
 
     const orderitems = new OrderItems(order)
-    const selectedProps = this.getSelectedProps(orderitems, rmanumber)
 
     this.state = {
       action: "",
       orderheader: orderheaders,
       orderitems: orderitems,
-      selectedProps: selectedProps,
     }
     Object.assign(this.state, props.location.state)
 
     //this.state.sitecode="Gracobaby"
     this.state.rmanumber = "RMA00000001X"
     // this.state.rmanumber = undefined
+
+    const selectedProps = this.getSelectedProps(
+      orderitems,
+      this.state.rmanumber
+    )
+
+    this.state.selectedProps = selectedProps
 
     console.debug(this.state)
 
@@ -55,15 +60,20 @@ export default class ReturnReview extends React.Component {
 
     orderitems.getItems().forEach(item => {
       if ("Pending Return" === item.ItemStatusName) {
-        //Note if RMA Number is null then we want to show all order items that are `PendingReturn`
         if (rmanumber === item.RMANumber) {
           selectedProps[item.ID] = true
-        } else {
+        } else if (
+          rmanumber === undefined ||
+          rmanumber === "" ||
+          rmanumber === null
+        ) {
+          //Note if RMA Number is null then we want to show all order items that are `PendingReturn`
+          console.debug(`RMANubmer input was null or empty {${rmanumber}}`)
           selectedProps[item.ID] = false
         }
       } else {
         console.debug(
-          `Items RMANumber did not match {${item.ID} ${item.StyleNumber} ${item.ItemStatusName} ${item.RMANumber}}`
+          `Items status was not in Pending Return  {${item.ID} ${item.StyleNumber} ${item.ItemStatusName} ${item.RMANumber}}`
         )
       }
     })
@@ -76,7 +86,7 @@ export default class ReturnReview extends React.Component {
     const name = target.name
 
     if (name === "itemId") {
-      const selectedProps = this.state.selectProps
+      const selectedProps = this.state.selectedProps
       if (target.checked) {
         selectedProps[value] = true
       } else {
@@ -87,11 +97,11 @@ export default class ReturnReview extends React.Component {
         [name]: value,
       })
     }
-    console.debug(this.state.selectProps)
+    console.debug(this.state.selectedProps)
   }
 
   handleBlur(event) {
-    const selectedProps = this.state.selectProps
+    const selectedProps = this.state.selectedProps
     let mystring = ""
 
     if (this.state.action === "process") {
@@ -119,13 +129,14 @@ export default class ReturnReview extends React.Component {
     //Maybe make the call on the return confirmation page??
     //Not sure how I want to handle errors yet.
 
-    navigate("/returnconfirmation") // Need to pass the state of the API call to the next page
-    // state { token , action, selected items, unseleced items}
+    // Need to pass the state of the API call to the next page
+    navigate("/returnconfirmation", {
+      state: this.state,
+    })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    this.handleBlur()
   }
 
   render() {
@@ -137,12 +148,11 @@ export default class ReturnReview extends React.Component {
         <OrderHeader orderheaders={this.state.orderheader} />
         <form onSubmit={this.handleSubmit} method="POST">
           <OrderDetail
-            orderitems={this.state.orderitems}
-            renderForm={true}
-            rmanumber={this.state.rmanumber}
-            selectedProps={this.state.selectProps}
+            items={this.state.orderitems.getItems()}
+            selectedProps={this.state.selectedProps}
+            tableheaders={this.state.orderitems.getTableHeaders()}
             inputChangeHander={this.handleInputChange}
-          />{" "}
+          />
           <label htmlFor="action">
             <input
               type="text"
