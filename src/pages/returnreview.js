@@ -29,19 +29,103 @@ export default class ReturnReview extends React.Component {
     //console.debug(orderheaders)
 
     const orderitems = new OrderItems(order)
+    const selectedProps = this.getSelectedProps(orderitems, rmanumber)
 
     this.state = {
-       orderheader: orderheaders,
-       orderitems: orderitems,
-     }
-     Object.assign(this.state, props.location.state)
-
+      action: "",
+      orderheader: orderheaders,
+      orderitems: orderitems,
+      selectedProps: selectedProps,
+    }
+    Object.assign(this.state, props.location.state)
 
     //this.state.sitecode="Gracobaby"
-    this.state.rmanumber="RMA00000001X"
-   // this.state.rmanumber = undefined
+    this.state.rmanumber = "RMA00000001X"
+    // this.state.rmanumber = undefined
 
-     console.debug(this.state)
+    console.debug(this.state)
+
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  getSelectedProps(orderitems, rmanumber) {
+    let selectedProps = {}
+
+    orderitems.getItems().forEach(item => {
+      if ("Pending Return" === item.ItemStatusName) {
+        //Note if RMA Number is null then we want to show all order items that are `PendingReturn`
+        if (rmanumber === item.RMANumber) {
+          selectedProps[item.ID] = true
+        } else {
+          selectedProps[item.ID] = false
+        }
+      } else {
+        console.debug(
+          `Items RMANumber did not match {${item.ID} ${item.StyleNumber} ${item.ItemStatusName} ${item.RMANumber}}`
+        )
+      }
+    })
+    return selectedProps
+  }
+
+  handleInputChange(event) {
+    const target = event.target
+    const value = target.value
+    const name = target.name
+
+    if (name === "itemId") {
+      const selectedProps = this.state.selectProps
+      if (target.checked) {
+        selectedProps[value] = true
+      } else {
+        selectedProps[value] = false
+      }
+    } else {
+      this.setState({
+        [name]: value,
+      })
+    }
+    console.debug(this.state.selectProps)
+  }
+
+  handleBlur(event) {
+    const selectedProps = this.state.selectProps
+    let mystring = ""
+
+    if (this.state.action === "process") {
+      //do nothing
+      // Maybe call the api Here?
+      mystring += `Call api/OmsRmaInboundReturn `
+    } else if (this.state.action === "skip") {
+      mystring += `Skipping `
+      for (const key in selectedProps) {
+        if (selectedProps.hasOwnProperty(key)) {
+          selectedProps[key] = false
+        }
+      }
+    } else {
+      alert(`need to enter in skip or process`)
+      return
+    }
+
+    for (const skey in selectedProps) {
+      if (selectedProps.hasOwnProperty(skey)) {
+        mystring += `[${skey} , ${selectedProps[skey]}] `
+      }
+    }
+    alert(mystring) //Need to only make call on items that are true
+    //Maybe make the call on the return confirmation page??
+    //Not sure how I want to handle errors yet.
+
+    navigate("/returnconfirmation") // Need to pass the state of the API call to the next page
+    // state { token , action, selected items, unseleced items}
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.handleBlur()
   }
 
   render() {
@@ -51,12 +135,29 @@ export default class ReturnReview extends React.Component {
         <h1>Order Review Screen</h1>
 
         <OrderHeader orderheaders={this.state.orderheader} />
-
-        <OrderDetail
-          orderitems={this.state.orderitems}
-          renderForm={true}
-          rmanumber={this.state.rmanumber}
-        />
+        <form onSubmit={this.handleSubmit} method="POST">
+          <OrderDetail
+            orderitems={this.state.orderitems}
+            renderForm={true}
+            rmanumber={this.state.rmanumber}
+            selectedProps={this.state.selectProps}
+            inputChangeHander={this.handleInputChange}
+          />{" "}
+          <label htmlFor="action">
+            <input
+              type="text"
+              id="action"
+              name="action"
+              size="40"
+              placeholder="scan bar code for process or skip"
+              value={this.state.action}
+              onChange={this.handleInputChange}
+              onBlur={this.handleBlur}
+            />
+          </label>
+          <br />
+          <br />
+        </form>
 
         <p>
           <span>
