@@ -1,5 +1,6 @@
 import React from "react"
 import Table from "react-bootstrap/Table"
+import "./style.scss"
 
 export default class OrderDetail extends React.Component {
   constructor(props) {
@@ -88,6 +89,7 @@ export default class OrderDetail extends React.Component {
                   if (col.key === "ImageURL") {
                     return (
                       <td key={row.ID + "-" + col.key}>
+                        {/* className="img-thumbnail rounded-sm" I couldn't get this to work */}
                         <img src={row[col.key]} alt={row.StyleNumber} />
                       </td>
                     )

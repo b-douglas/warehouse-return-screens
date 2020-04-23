@@ -6,7 +6,6 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 export default class IndexPage extends React.Component {
-
   componentDidMount() {
     navigate("/login") //Ha ha ha useless page, but whatever, we go to login right away this way
   }
@@ -15,10 +14,12 @@ export default class IndexPage extends React.Component {
     return (
       <Layout>
         <SEO title="Home" />
-        <h2>A quick sample of warehouse return screens</h2>
-        To start please click this link: <Link to="/login">Login Page</Link>
-        <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        {/* <Image /> */}
+        <div className="center-block">
+          <h2>A quick sample of warehouse return screens</h2>
+          To start please click this link: <Link to="/login">Login Page</Link>
+          <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+            {/* <Image /> */}
+          </div>
         </div>
       </Layout>
     )

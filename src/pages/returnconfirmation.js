@@ -96,7 +96,7 @@ export default class ReturnConfirmation extends React.Component {
           <p>
             <span>
               <b>
-                Nothing was processed and nothing was skipped. <br/>
+                Nothing was processed and nothing was skipped. <br />
                 <i>Please try the order again or try a different order.</i>
               </b>
             </span>
@@ -113,9 +113,6 @@ export default class ReturnConfirmation extends React.Component {
         <div className="container-fluid">{wasskipped}</div>
         <div className="container-fluid">
           <Link to="/returninput">Return Input</Link>
-        </div>
-        <div className="container">
-          <Link to="/">Go back to the homepage</Link>
         </div>
       </Layout>
     )

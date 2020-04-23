@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, navigate } from "gatsby"
+import { navigate } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -116,8 +116,6 @@ export default class ReturnInput extends React.Component {
             <br />
             {errors}
           </form>
-
-          <Link to="/">Go back to the homepage</Link>
         </div>
       </Layout>
     )
