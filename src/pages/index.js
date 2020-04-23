@@ -14,7 +14,7 @@ export default class IndexPage extends React.Component {
     return (
       <Layout>
         <SEO title="Home" />
-        <div class="center-block">
+        <div className="center-block">
           <h2>A quick sample of warehouse return screens</h2>
           To start please click this link: <Link to="/login">Login Page</Link>
           <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
