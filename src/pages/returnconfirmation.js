@@ -114,9 +114,6 @@ export default class ReturnConfirmation extends React.Component {
         <div className="container-fluid">
           <Link to="/returninput">Return Input</Link>
         </div>
-        <div className="container">
-          <Link to="/">Go back to the homepage</Link>
-        </div>
       </Layout>
     )
   }
