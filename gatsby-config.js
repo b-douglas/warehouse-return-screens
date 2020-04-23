@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: "Blank Brands Warehouse Returns Processor",
-    description: "A simple warehouse web app to accept returns",
     author: "@b-douglas",
+    description: "A simple warehouse web app to accept returns",
+    title: "Blank Brands Warehouse Returns Processor",
+    siteUrl: "https://b-douglas.github.io/warehouse-return-screens",
   },
   pathPrefix: "/warehouse-return-screens",
   plugins: [
