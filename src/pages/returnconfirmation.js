@@ -107,12 +107,19 @@ export default class ReturnConfirmation extends React.Component {
     return (
       <Layout>
         <SEO title="ReturnConfirmation" />
-
-        {actionh1}
-        <div className="container-fluid">{wasprocessed}</div>
-        <div className="container-fluid">{wasskipped}</div>
-        <div className="container-fluid">
-          <Link to="/returninput">Return Input</Link>
+        <div className="row">
+          <div className="col">{actionh1}</div>
+        </div>
+        <div className="row">
+          <div className="col">{wasprocessed}</div>
+        </div>
+        <div className="row">
+          <div className="col">{wasskipped}</div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <Link to="/returninput">Return Input</Link>
+          </div>
         </div>
       </Layout>
     )
