@@ -91,7 +91,7 @@ export default class ReturnConfirmation extends React.Component {
     }
 
     if (wasskipped === null && wasprocessed === null)
-      wasprocessed = (
+      wasskipped = (
         <div className="alert alert-danger">
           <p>
             <span>

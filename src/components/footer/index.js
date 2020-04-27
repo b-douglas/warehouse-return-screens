@@ -6,18 +6,22 @@ const Footer = ({ author, title }) => (
   <footer>
     <div className="footer">
       <div className="container">
-        <div className="center-block">
-          <hr className="border-primary" />
-          <p>
-            {
-              /*title*/
-              //Do we want Title here?!?
-            }
-            <Link to="/">Go back to the homepage</Link>
-          </p>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <hr className="border-primary" />
+        <div className="row">
+          <div className="col"></div>
+          <div className="col">
+            <p>
+              {
+                /*title*/
+                //Do we want Title here?!?
+              }
+              <Link to="/">Go back to the homepage</Link>
+            </p>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          </div>
+          <div className="col"></div>
         </div>
       </div>
     </div>
