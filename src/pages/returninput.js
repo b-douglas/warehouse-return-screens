@@ -76,46 +76,48 @@ export default class ReturnInput extends React.Component {
     return (
       <Layout>
         <SEO title="ReturnInput" />
-        <div className="container">
-          <h1>Returns Input Screen</h1>
+        <div className="row">
+          <div className="col">
+            <h1>Returns Input Screen</h1>
 
-          <p>
-            <i>
-              To Test please use: <br />
-              order number == 00000901 <br />
-              rmanumber == RMA00000001X || RMA00000002X || 0
-            </i>
-          </p>
+            <p>
+              <i>
+                To Test please use: <br />
+                order number == 00000901 <br />
+                rmanumber == RMA00000001X || RMA00000002X || 0
+              </i>
+            </p>
 
-          <form onSubmit={this.handleSubmit} method="POST">
-            <label htmlFor="ordernumber">
-              <b>{"Order Number: "}</b>
-              <input
-                type="text"
-                id="ordernumber"
-                name="ordernumber"
-                value={this.state.ordernumber}
-                onChange={this.handleInputChange}
-                placeholder="scan barcode from box"
-              />
-            </label>
-            <br />
+            <form onSubmit={this.handleSubmit} method="POST">
+              <label htmlFor="ordernumber">
+                <b>{"Order Number: "}</b>
+                <input
+                  type="text"
+                  id="ordernumber"
+                  name="ordernumber"
+                  value={this.state.ordernumber}
+                  onChange={this.handleInputChange}
+                  placeholder="scan barcode from box"
+                />
+              </label>
+              <br />
 
-            <label htmlFor="rmanumber">
-              <b>{"RMA Number: "}</b>
-              <input
-                type="text"
-                id="rmanumber"
-                name="rmanumber"
-                value={this.state.rmanumber}
-                onChange={this.handleInputChange}
-                onBlur={this.handleBlur}
-                placeholder="scan barcode from box"
-              />
-            </label>
-            <br />
-            {errors}
-          </form>
+              <label htmlFor="rmanumber">
+                <b>{"RMA Number: "}</b>
+                <input
+                  type="text"
+                  id="rmanumber"
+                  name="rmanumber"
+                  value={this.state.rmanumber}
+                  onChange={this.handleInputChange}
+                  onBlur={this.handleBlur}
+                  placeholder="scan barcode from box"
+                />
+              </label>
+              <br />
+              {errors}
+            </form>
+          </div>
         </div>
       </Layout>
     )

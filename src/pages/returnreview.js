@@ -146,45 +146,50 @@ export default class ReturnReview extends React.Component {
     }
     return (
       <Layout>
-        <SEO title="ReturnReview" />
-        <h1>Order Review Screen</h1>
+        <SEO title="ReturnReview" />{" "}
+        <div className="row">
+          <div className="col">
+            <h1>Order Review Screen</h1>
 
-        <OrderHeader orderheaders={this.state.orderheader} />
-        <form onSubmit={this.handleSubmit} method="POST">
-          <OrderDetail
-            items={this.state.orderitems.getItems()}
-            selectedProps={this.state.selectedProps}
-            tableheaders={this.state.orderitems.getTableHeaders()}
-            inputChangeHander={this.handleInputChange}
-          />
-          <label htmlFor="action">
-            <input
-              type="text"
-              id="action"
-              name="action"
-              size="40"
-              placeholder="scan bar code for process or skip"
-              value={this.state.action}
-              onChange={this.handleInputChange}
-              onBlur={this.handleBlur}
-            />
-          </label>
-          <br />
-          {errors}
-          <br />
-        </form>
+            <OrderHeader orderheaders={this.state.orderheader} />
+            <form onSubmit={this.handleSubmit} method="POST">
+              <OrderDetail
+                items={this.state.orderitems.getItems()}
+                selectedProps={this.state.selectedProps}
+                tableheaders={this.state.orderitems.getTableHeaders()}
+                inputChangeHander={this.handleInputChange}
+              />
+              <label htmlFor="action">
+                <input
+                  type="text"
+                  id="action"
+                  name="action"
+                  size="40"
+                  placeholder="scan bar code for process or skip"
+                  value={this.state.action}
+                  onChange={this.handleInputChange}
+                  onBlur={this.handleBlur}
+                />
+              </label>
+              <br />
+              {errors}
+              <br />
+            </form>
 
-        <p>
-          <span>
-            <b>
-              Please check the box for the items selected above. If items are
-              missing, broken, or incorrect please uncheck those items. <br />
-              If all items are missing, broken or incorrect, please scan the
-              skip barcode and the page will advance doing no processing.
-            </b>
-          </span>
-        </p>
-        <br />
+            <p>
+              <span>
+                <b>
+                  Please check the box for the items selected above. If items
+                  are missing, broken, or incorrect please uncheck those items.{" "}
+                  <br />
+                  If all items are missing, broken or incorrect, please scan the
+                  skip barcode and the page will advance doing no processing.
+                </b>
+              </span>
+            </p>
+            <br />
+          </div>
+        </div>
       </Layout>
     )
   }
