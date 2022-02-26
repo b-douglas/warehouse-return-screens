@@ -39,7 +39,7 @@
     "lint-staged": "^10.1.7",
     "modern-normalize": "^0.6.0",
     "prettier": "^1.19.1",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.27.0",
     "textlint": "^11.6.3"
   },
   "keywords": [
