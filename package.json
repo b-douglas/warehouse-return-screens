@@ -37,7 +37,7 @@
     "font-awesome": "^4.7.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
-    "modern-normalize": "^0.6.0",
+    "modern-normalize": "^2.0.0",
     "prettier": "^1.19.1",
     "prismjs": "^1.27.0",
     "textlint": "^11.6.3"
