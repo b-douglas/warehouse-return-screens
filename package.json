@@ -40,7 +40,7 @@
     "modern-normalize": "^2.0.0",
     "prettier": "^1.19.1",
     "prismjs": "^1.27.0",
-    "textlint": "^11.6.3"
+    "textlint": "^13.4.1"
   },
   "keywords": [
     "gatsby"
