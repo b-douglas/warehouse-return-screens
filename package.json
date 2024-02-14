@@ -36,7 +36,7 @@
     "eslint-plugin-react": "^7.19.0",
     "font-awesome": "^4.7.0",
     "husky": "^9.0.10",
-    "lint-staged": "^15.2.0",
+    "lint-staged": "^15.2.2",
     "modern-normalize": "^2.0.0",
     "prettier": "^3.2.4",
     "prismjs": "^1.27.0",
