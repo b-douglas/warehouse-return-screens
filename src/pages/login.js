@@ -1,7 +1,9 @@
 import React from "react"
 import { navigate } from "gatsby"
+import Alert from "react-bootstrap/Alert"
 
 import Layout from "../components/layout"
+import { default as OMSClient } from "../helpers/oms-client"
 import SEO from "../components/seo"
 import styles from "./login.module.scss"
 
@@ -9,9 +11,9 @@ export default class LoginPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      userid: "enter your user id",
-      password: "place",
-      sitecode: "Gracobaby",
+      userid: "",
+      password: "",
+      sitecode: process.env.OMS_SITE_DEFAULT,
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -28,17 +30,46 @@ export default class LoginPage extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
-    alert(
-      `Call api/token with { ${this.state.userid} , ${this.state.password} }`
-    )
-    navigate("/returninput", {
-      state: { apitoken: undefined, sitecode: this.state.sitecode },
-    })
+
+    const success = await OMSClient.login(this.state.userid, this.state.password)
+
+    if (!success) {
+      this.setState({
+        errormessage: "Invalid username and/or password",
+      })
+    } else {
+      // Need to pass the state of the API call to the next page
+      OMSClient.setSiteCode(this.state.sitecode)
+      navigate("/returninput", {
+        state: { loginsuccess: true, sitecode: this.state.sitecode },
+      })
+    }
   }
 
   render() {
+    let errors
+    if (this.state.errormessage) {
+      errors = <Alert variant="danger">{this.state.errormessage}</Alert>
+    } else {
+      errors = null
+    }
+
+    const OptionsCreate = ({ options }) => {
+      return options.split(",").map((o) => {
+        o = o.replace(/[\",\[,\]]/g, "").trim()
+        return (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        )
+      })
+    }
+
+    const forgotUsername = `${OMSClient.host}Account/ForgotUsername`
+    const forgotPassword = `${OMSClient.host}Account/ForgotPassword`
+
     return (
       <Layout>
         <SEO title="Login" />
@@ -60,17 +91,12 @@ export default class LoginPage extends React.Component {
                       className="siteSelection selectItem"
                       value={this.state.sitecode}
                       onBlur={this.handleInputChange}
-                      onChange={this.handleInputChange}
-                    >
-                      <option value="Baby Jogger">Baby Jogger</option>
-                      <option value="Calphalon">Calphalon</option>
-                      <option value="FoodSaver">FoodSaver</option>
-                      <option value="Gracobaby">Gracobaby</option>
-                      <option value="Holmes">Holmes</option>
-                      <option value="Marmot">Marmot</option>
+                      onChange={this.handleInputChange}>
+                      <OptionsCreate options={process.env.OMS_SITES} />
                     </select>
                   </label>
                   <br />
+                  {errors}
                   <b>
                     <label htmlFor="userid">Username:</label>
                   </b>
@@ -99,28 +125,18 @@ export default class LoginPage extends React.Component {
                 </div>
                 <div className="formField">
                   <label>
-                    <input
-                      className={styles.submit}
-                      id="SubmitLogin"
-                      type="submit"
-                      value="Log In"
-                    />
+                    <input className={styles.submit} id="SubmitLogin" type="submit" value="Log In" />
                   </label>
                 </div>
                 <div id="LogInLinks">
-                  <a href="https://staging-admin-804279-newell-app.deckcommerce.net/Account/ForgotUsername">
-                    Forgot Username?
-                  </a>{" "}
-                  &#124;
-                  <a href="https://staging-admin-804279-newell-app.deckcommerce.net/Account/ForgotPassword">
-                    Forgot Password?
-                  </a>
+                  <a href={forgotUsername}>Forgot Username?</a>
+                  &nbsp;&#124;&nbsp;
+                  <a href={forgotPassword}>Forgot Password?</a>
                 </div>
               </form>
 
               <p>
-                Note: This page will login into OMS via OAUTH. Each warehouse
-                returns specialist will have an account that has access to
+                Note: This page will login into OMS via OAUTH. Each warehouse returns specialist will have an account that has access to
                 orders and make changes to returns.
               </p>
             </div>

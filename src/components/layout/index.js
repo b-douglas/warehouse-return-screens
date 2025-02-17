@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "../header"
 import Footer from "../footer"
+import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
 import "modern-normalize/modern-normalize.css"
 import "prismjs/themes/prism.css"
@@ -19,17 +20,7 @@ import "font-awesome/css/font-awesome.css"
 import "./style.scss"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-          description
-          author
-        }
-      }
-    }
-  `)
+  const { title, author } = useSiteMetadata()
 
   return (
     <div>

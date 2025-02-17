@@ -1,16 +1,18 @@
 import React from "react"
 import Table from "react-bootstrap/Table"
 
-/* Should show the following:
-Order Number	OrderNumber in OMS
-Order Date	OrderDate in OMS
-Order Status Code	OrderStatusCode in OMS
-Customer Id	CustomerId in OMS
+/**
+
+Should show the following:
+- Order Number	OrderNumber in OMS
+- Order Date	OrderDate in OMS
+- Order Status Code	OrderStatusCode in OMS
+- Customer Id	CustomerId in OMS
 */
 
 // Local Row React Element
 const Row = ({ oh }) => {
-  return oh.map(i => {
+  return oh.map((i) => {
     //console.debug(i)
     return (
       <tr key={i.key}>
@@ -24,7 +26,7 @@ const Row = ({ oh }) => {
 }
 
 const OrderHeader = ({ orderheaders }) => (
-  <Table bordered hover responsive="md">
+  <Table bordered hover responsive="md" size="sm">
     <tbody>
       <Row oh={orderheaders} />
     </tbody>

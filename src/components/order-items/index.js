@@ -29,53 +29,67 @@ export default class OrderItems {
   }
 
   setItems(order) {
+    console.debug(`> OrderItems::setItems(${order})`)
     let itemsMap = {}
     const th = this.tableHeaders
 
     const jsonitems = order.Items
     const jsonrmas = order.RMAS
 
-    console.debug(th)
-
-    jsonitems.forEach(jsonitem => {
-      let item = {}
-      // //Add Select CheckBox
-      // item[th.checkbox.key] = undefined
-      //Add each item column
-      th.items.forEach(itemhead => {
-        item[itemhead.key] = jsonitem[itemhead.key]
+    if (jsonitems) {
+      jsonitems.forEach((jsonitem) => {
+        let item = {}
+        // //Add Select CheckBox
+        // item[th.checkbox.key] = undefined
+        //Add each item column
+        th.items.forEach((itemhead) => {
+          item[itemhead.key] = jsonitem[itemhead.key]
+        })
+        itemsMap[jsonitem["ID"]] = item
       })
-      itemsMap[jsonitem["ID"]] = item
-    })
-    console.debug(itemsMap)
+    } else {
+      console.warn(`OrderItems::setItems jsonitems is ${jsonitems}`)
+    }
 
     //get RMA
-    jsonrmas.forEach(rma => {
-      let rmaNumber = rma["RmaNumber"]
-      if (rma["Status"] === "Pending") {
-        rma["Orders"].forEach(rmaorder => {
-          rmaorder["Items"].forEach(rmaitem => {
-            if ("OrderItemID" in rmaitem) {
-              if (rmaitem["OrderItemID"] in itemsMap) {
-                const item = itemsMap[rmaitem["OrderItemID"]]
-                item[th.rma.key] = rmaNumber
-                // item[th.checkbox.key] = true
+    if (jsonrmas) {
+      jsonrmas.forEach((rma) => {
+        let rmaNumber = rma["RmaNumber"]
+        const trace = { rma: rma }
+        console.count("orderitems")
+        if (rma["Status"] === "Pending") {
+          rma["Orders"].forEach((rmaorder) => {
+            trace.rmaorder = rmaorder
+            console.count("orderitems")
+            rmaorder["Items"].forEach((rmaitem) => {
+              trace.rmaitem = rmaitem
+              console.count("orderitems")
+              if ("OrderItemID" in rmaitem) {
+                if (rmaitem["OrderItemID"] in itemsMap) {
+                  const item = itemsMap[rmaitem["OrderItemID"]]
+                  item[th.rma.key] = rmaNumber
+                  trace.rmakey = th.rma.key
+                  trace.rmanumber = rmanumber
+                  trace.item = rmaitem["OrderItemID"]
+                  console.count("orderitems")
+                  console.table(trace)
+                  // TODO remove comment?
+                  // item[th.checkbox.key] = true
+                } else {
+                  console.debug(`rmaitem[${rmaitem["OrderItemID"]}] not in itemsMap!`)
+                }
               } else {
-                console.debug(
-                  `rmaitem[${rmaitem["OrderItemID"]}] not in itemsMap!`
-                )
+                console.debug(`rmaitem[OrderItemID] not in rmaitem! - ${rmaitem}`)
               }
-            } else {
-              console.debug(`rmaitem[OrderItemID] not in rmaitem! - ${rmaitem}`)
-            }
+            })
           })
-        })
-      } else {
-        console.debug(
-          `RMA status is not in Pending status {${rma["RmaNumber"]},${rma["Status"]}}`
-        )
-      }
-    })
+        } else {
+          console.debug(`RMA status is not in Pending status {${rma["RmaNumber"]},${rma["Status"]}}`)
+        }
+      })
+    } else {
+      console.warn(`OrderItems::setItems jsonrmas is ${jsonrmas}`)
+    }
 
     let items = []
     for (const id in itemsMap) {
@@ -84,7 +98,7 @@ export default class OrderItems {
         items.push(item)
       }
     }
-    console.debug(items)
     this.items = items
+    console.debug(`< OrderItems::setItems(${this.items})`)
   }
 }
