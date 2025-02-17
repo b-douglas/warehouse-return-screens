@@ -29,20 +29,24 @@ export default class OrderDetail extends React.Component {
       select = <th>Select</th>
     }
     return (
-      <Table striped bordered hover responsive="md">
+      <Table striped bordered hover responsive="md" size="sm">
         <thead>
           <tr>
             {select}
-            {this.state.tableheaders.items.map(i => {
+            {this.state.tableheaders.items.map((i) => {
               return <th key={i.key}>{i.name}</th>
             })}
             <th>{this.state.tableheaders.rma.name}</th>
           </tr>
         </thead>
         <tbody>
-          {this.state.items.map(row => {
+          {this.state.items.map((row) => {
             let checkbox
-            if (this.state.selectedProps === undefined) {
+            if (
+              this.state.selectedProps === undefined ||
+              this.state.selectedProps === null ||
+              Object.entries(this.state.selectedProps).length === 0
+            ) {
               checkbox = null
             } else if (this.state.selectedProps.hasOwnProperty(row.ID)) {
               if (this.state.selectedProps[row.ID] === true) {
@@ -64,13 +68,7 @@ export default class OrderDetail extends React.Component {
                 checkbox = (
                   <td>
                     <label htmlFor={row.ID}>
-                      <input
-                        type="checkbox"
-                        id={`itemid-${row.ID}`}
-                        name="itemId"
-                        value={row.ID}
-                        onChange={this.handleInputChange}
-                      />
+                      <input type="checkbox" id={`itemid-${row.ID}`} name="itemId" value={row.ID} onChange={this.handleInputChange} />
                     </label>
                   </td>
                 )
@@ -85,7 +83,7 @@ export default class OrderDetail extends React.Component {
             return (
               <tr key={row.ID}>
                 {checkbox}
-                {this.state.tableheaders.items.map(col => {
+                {this.state.tableheaders.items.map((col) => {
                   if (col.key === "ImageURL") {
                     return (
                       <td key={row.ID + "-" + col.key}>
