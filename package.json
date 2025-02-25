@@ -19,7 +19,7 @@
     "gatsby-plugin-sass": "^2.2.3",
     "gatsby-plugin-sharp": "^2.5.6",
     "gatsby-plugin-sitemap": "^2.3.5",
-    "gatsby-source-filesystem": "^2.2.4",
+    "gatsby-source-filesystem": "^5.14.0",
     "gatsby-transformer-sharp": "^2.4.6",
     "joi": "^17.3.0",
     "node-sass": "^7.0.0",
